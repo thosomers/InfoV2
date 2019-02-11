@@ -60,6 +60,7 @@
      <Compile Include="Assets\Pieecs\Scripts\Player.cs" />
      <Compile Include="Assets\Pieecs\Scripts\PlayerObject.cs" />
      <Compile Include="Assets\Pieecs\Scripts\Robot.cs" />
+     <Compile Include="Assets\Pieecs\Scripts\Selection.cs" />
      <Compile Include="Assets\Pieecs\Scripts\Tile.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>/home/informatica/New Unity Project/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

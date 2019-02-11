@@ -26,7 +26,7 @@ public class Player
 	{
 		MyBase = Base.newBase(this);
 		MyCapturePoints.Add(CapturePoint.newCapturePoint(this));
-		MyRobots.Add(Robot.newRobot(this));
+		MyRobots.Add(Robot.newRobot(this,RobotClass.Guard));
 
 
 	}

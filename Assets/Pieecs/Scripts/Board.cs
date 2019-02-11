@@ -40,7 +40,7 @@ public class Board : MonoBehaviour
 	{
 		Instance = this;
 		
-		camera.transform.position = new Vector3((float)WIDTH/2,(float)HEIGHT/2f-1,-10);
+		camera.transform.position = new Vector3((float)(WIDTH-1)/2,(float)(HEIGHT-1)/2f,-10);
 		camera.orthographicSize = HEIGHT / 2f;
 		
 		
@@ -75,7 +75,7 @@ public class Board : MonoBehaviour
 
 	public static bool exists(int x, int y)
 	{
-		return x >= 0 && x < Instance.WIDTH && y >= 0 && y <= Instance.HEIGHT;
+		return x >= 0 && x < Instance.WIDTH && y >= 0 && y < Instance.HEIGHT;
 	}
 
 	public static PlayerObject getObject(int x, int y)

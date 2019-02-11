@@ -57,8 +57,14 @@ public class GameTester : MonoBehaviour
 					robot.Move(1,0);
 				}
 			}
-			
-			
+
+			if (ev.keyCode == KeyCode.E)
+			{
+				foreach (var robot in Player.Player1.MyRobots)
+				{
+					robot.ResetMove();
+				}
+			}
 			
 		}
 

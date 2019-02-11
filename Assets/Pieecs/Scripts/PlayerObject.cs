@@ -6,13 +6,13 @@ public abstract class PlayerObject : MonoBehaviour
 {
 
 
-    public void Setup(Player player, int Health)
+    public void Setup(Player player, float Health)
     {
         this.Player = player;
         this.Health = Health;
     }
 
-    public void RemoveHealth(int damage)
+    public void RemoveHealth(float damage)
     {
         this.Health -= damage;
         if (this.Health <= 0)
@@ -33,7 +33,7 @@ public abstract class PlayerObject : MonoBehaviour
     
 
 
-    public int Health { get; protected set; }
+    public float Health { get; protected set; }
 
 
 

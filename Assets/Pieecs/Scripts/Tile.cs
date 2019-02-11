@@ -5,6 +5,8 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
 
+	public Selection selectionBox;
+
 
 	public bool IsEmpty
 	{
@@ -33,6 +35,13 @@ public class Tile : MonoBehaviour
 	{
 		this.Position = new Vector2(x,y);
 		this.transform.localPosition = new Vector3(x,y,0);
+		this.selectionBox = this.GetComponentInChildren<Selection>();
+		
+	}
+
+
+	public void Start()
+	{
 		
 	}
 }
