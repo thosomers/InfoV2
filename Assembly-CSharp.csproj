@@ -63,6 +63,9 @@
      <Compile Include="Assets\Pieecs\Scripts\Robot.cs" />
      <Compile Include="Assets\Pieecs\Scripts\Selection.cs" />
      <Compile Include="Assets\Pieecs\Scripts\Tile.cs" />
+     <Compile Include="Assets\Pieecs\Scripts\Utils\ColorProxy.cs" />
+     <Compile Include="Assets\Pieecs\Scripts\Utils\LuaHandler.cs" />
+     <Compile Include="Assets\Pieecs\Scripts\Utils\VectorProxy.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>/home/informatica/InfoProjectSharp/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

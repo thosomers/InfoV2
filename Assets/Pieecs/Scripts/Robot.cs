@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using MoonSharp.Interpreter;
+using Pieecs.Scripts.Utils;
 using UnityEngine;
 
 public class Robot : PlayerObject {
@@ -11,11 +14,30 @@ public class Robot : PlayerObject {
 	public int X { get; protected set; }
 	public int Y { get; protected set; }
 
-	
-	private int stepsLeft = 0;
-	private bool attackLeft = false;	
+
+	public int stepsLeft { get; private set; }
+
+	public bool attackLeft { get; private set; }
 	
 	public RobotClass RClass;
+
+	public void Rotate(int x, int y)
+	{
+		if (Math.Abs(x) > Math.Abs(y))
+		{
+			this.GetComponentInChildren<Transform>().eulerAngles = new Vector3(0,Math.Sign(-x)*90,0);
+		}
+		else
+		{
+			this.GetComponentInChildren<Transform>().eulerAngles = new Vector3(0,(Math.Sign(y)+1)*90,0);
+		}
+		
+		
+		
+		
+		
+	}
+	
 
 
 
@@ -32,7 +54,6 @@ public class Robot : PlayerObject {
 		renderer.enabled = true;
 
 		this.transform.position = new Vector3(X,0,Y);
-
 
 		foreach (var tile in Tiles())
 		{
@@ -66,18 +87,18 @@ public class Robot : PlayerObject {
 		return tiles;
 	}
 
-	public void Attack(int dx, int dy)
+	public bool Attack(int dx, int dy)
 	{
 		if (!attackLeft)
 		{
 			Debug.Log("No attack left.");
-			return;
+			return false;
 		}
 
 		if (Mathf.Abs(dx) + Mathf.Abs(dy) > RClass.AttackRange+0.1)
 		{
 			Debug.Log("Too far");
-			return;
+			return false;
 		}
 		
 		var nx = X + dx;
@@ -88,23 +109,25 @@ public class Robot : PlayerObject {
 		if (Board.getObject(nx, ny) == null)
 		{
 			Debug.Log("Nothing to attack");
-			return;
+			return false;
 		}
 
 		
 		if (obj.Player == this.Player)
 		{
 			Debug.Log("No Self-Harm please");
-			return;
+			return false;
 		}
-		
+
+
+		Rotate(dx, dy);
 		
 		attackLeft = false;
 		Debug.Log("Attacked.");
 		stepsLeft = 0;
 		Debug.Log("Steps left: " + stepsLeft);
 		obj.RemoveHealth(RClass.AttackDamage);
-		
+		return true;
 	}
 
 
@@ -120,18 +143,18 @@ public class Robot : PlayerObject {
 		Debug.Log("Steps left: " + stepsLeft);
 	}
 	
-	public void Move(int dx, int dy)
+	public bool Move(int dx, int dy)
 	{
 		if (stepsLeft <= 0)
 		{
 			Debug.Log("No steps left.");
-			return;
+			return false;
 		}
 		
 		if (Mathf.Abs(dx) + Mathf.Abs(dy) > 1+0.1)
 		{
 			Debug.Log("Too far");
-			return;
+			return false;
 		}
 
 		var nx = X + dx;
@@ -140,13 +163,15 @@ public class Robot : PlayerObject {
 		if (!Board.exists(nx, ny) || Board.getObject(nx, ny) != null)
 		{
 			Debug.Log("Too full :(");
-			return;
+			return false;
 		}
 
+		Rotate(dx, dy);
+		
 		foreach (var tile in Tiles())
 		{
 			tile.Object = null;
-			tile.selectionBox.setColor(Color.red);
+			//tile.selectionBox.setColor(new BetterColor(Color.red));
 			
 		}
 
@@ -156,14 +181,15 @@ public class Robot : PlayerObject {
 		foreach (var tile in Tiles())
 		{
 			tile.Object = this;
-			tile.selectionBox.setColor(Color.blue);
-			tile.selectionBox.setEnabled(!tile.selectionBox.getEnabled());
+			//tile.selectionBox.setColor(new BetterColor(Color.blue));
+			//tile.selectionBox.setEnabled(!tile.selectionBox.getEnabled());
 		}
 
 		stepsLeft -= 1;
 		
 		Debug.Log("Steps left: " + stepsLeft);
 		this.transform.position = new Vector3(X,0,Y);
+		return true;
 	}
 
 	protected override void Destroy()
@@ -195,3 +221,57 @@ public class RobotClass
 		AttackRange = ARange;
 	}
 }
+
+[MoonSharpUserData]
+public class RobotProxy
+{
+	public Robot Robot;
+
+	public RobotProxy(Robot robot)
+	{
+		Robot = robot;
+	}
+
+
+	public VectorProxy Pos {
+		get { return new VectorProxy(Robot.X,Robot.Y);}
+	}
+
+	public int Steps
+	{
+		get { return Robot.stepsLeft; }
+	}
+
+	public int Attacks
+	{
+		get
+		{
+			return Robot.attackLeft ?  Robot.RClass.AttackRange : 0;
+		}
+	}
+
+	public Player Player {
+		get { return Robot.Player;}
+	}
+
+
+	public bool Attack(VectorProxy vec)
+	{
+		return Robot.Attack((int) vec.X, (int) vec.Y);
+	}
+
+	public int Move(VectorProxy vec)
+	{
+		
+		var ret = Robot.Move((int) vec.X,(int) vec.Y);
+		
+		return ret ? Robot.stepsLeft : -1;
+	}
+
+
+
+
+
+}
+
+

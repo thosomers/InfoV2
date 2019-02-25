@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Pieecs.Scripts.Utils;
 using UnityEngine;
 
 public class Selection : MonoBehaviour
@@ -22,14 +23,14 @@ public class Selection : MonoBehaviour
 		return enabled;
 	}
 
-	public void setColor(Color col)
+	public void setColor(BetterColor col)
 	{
-		renderer.color = col;
+		renderer.color = new Color(col.R,col.G,col.B,0.6f);
 	}
 
-	public Color getColor()
+	public BetterColor getColor()
 	{
-		return renderer.color;
+		return new BetterColor(renderer.color);
 	}
 	
 	

@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using MoonSharp.Interpreter;
+using Pieecs.Scripts.Utils;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
@@ -81,5 +84,23 @@ public class Board : MonoBehaviour
 	public static PlayerObject getObject(int x, int y)
 	{
 		return !exists(x, y) ? null : Instance.Tiles[x, y].Object;
+	}
+
+	public static Tile getTile(int x, int y)
+	{
+		return !exists(x, y) ? null : Instance.Tiles[x, y];
+	}
+	
+	public static Tile getTile(VectorProxy vec)
+	{
+		return getTile((int)vec.X,(int)vec.Y);
+	}
+	
+	
+	
+
+	public static void Setup(Script scr)
+	{
+		scr.Globals["Tiles"] = (Func<VectorProxy, Tile>) getTile;
 	}
 }
