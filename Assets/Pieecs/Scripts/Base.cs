@@ -6,10 +6,8 @@ using UnityEngine;
 public class Base : PlayerObject
 {
 
-	public Sprite P1Sprite;
-	public Sprite P2Sprite;
-
-	private SpriteRenderer renderer;
+	public MeshRenderer Player1Mesh;
+	public MeshRenderer Player2Mesh;
 	
 	
 	
@@ -28,13 +26,13 @@ public class Base : PlayerObject
 		
 		this.Xmin = x;
 		this.Ymin = y;
-		renderer = this.GetComponent<SpriteRenderer>();
-		renderer.sprite = P1 ? P1Sprite : P2Sprite;
+		var renderer = P1 ? Player1Mesh : Player2Mesh;
+		renderer.enabled = true;
 
 		var posx = Xmin + (Width-1) / 2f;
 		var posy = Ymin + (Height-1) / 2f;
 
-		this.transform.position = new Vector3(posx,posy,-1);
+		this.transform.position = new Vector3(posx,0,posy);
 
 
 		foreach (var tile in Tiles())

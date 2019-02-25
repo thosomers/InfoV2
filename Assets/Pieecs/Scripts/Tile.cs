@@ -34,7 +34,7 @@ public class Tile : MonoBehaviour
 	public void Setup(int x, int y)
 	{
 		this.Position = new Vector2(x,y);
-		this.transform.localPosition = new Vector3(x,y,0);
+		this.transform.localPosition = new Vector3(x,0,y);
 		this.selectionBox = this.GetComponentInChildren<Selection>();
 		
 	}
@@ -45,3 +45,4 @@ public class Tile : MonoBehaviour
 		
 	}
 }
+

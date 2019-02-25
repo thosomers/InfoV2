@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Robot : PlayerObject {
 
-	public Sprite P1Sprite;
-	public Sprite P2Sprite;
+	public MeshRenderer Player1Mesh;
+	public MeshRenderer Player2Mesh;
 
 	private SpriteRenderer renderer;
 	public int X { get; protected set; }
@@ -27,10 +27,11 @@ public class Robot : PlayerObject {
 		
 		this.X = x;
 		this.Y = y;
-		renderer = this.GetComponent<SpriteRenderer>();
-		renderer.sprite = P1 ? P1Sprite : P2Sprite;
+		
+		var renderer = P1 ? Player1Mesh : Player2Mesh;
+		renderer.enabled = true;
 
-		this.transform.position = new Vector3(X,Y,-1);
+		this.transform.position = new Vector3(X,0,Y);
 
 
 		foreach (var tile in Tiles())
@@ -162,7 +163,7 @@ public class Robot : PlayerObject {
 		stepsLeft -= 1;
 		
 		Debug.Log("Steps left: " + stepsLeft);
-		this.transform.position = new Vector3(X,Y,-1);
+		this.transform.position = new Vector3(X,0,Y);
 	}
 
 	protected override void Destroy()

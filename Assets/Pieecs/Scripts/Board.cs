@@ -40,8 +40,8 @@ public class Board : MonoBehaviour
 	{
 		Instance = this;
 		
-		camera.transform.position = new Vector3((float)(WIDTH-1)/2,(float)(HEIGHT-1)/2f,-10);
-		camera.orthographicSize = HEIGHT / 2f;
+		//camera.transform.position = new Vector3((float)(WIDTH-1)/2,(float)(HEIGHT-1)/2f,-10);
+		//camera.orthographicSize = HEIGHT / 2f;
 		
 		
 		Tiles = new Tile[WIDTH,HEIGHT];
