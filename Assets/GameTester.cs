@@ -4,13 +4,23 @@ using System.Collections.Generic;
 using MoonSharp.Interpreter;
 using Pieecs.Scripts.Utils;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameTester : MonoBehaviour
 {
 	private Script mscript;
 
+
+	public ConsoleController console;
+
 	private bool isSet = false;
 	public Robot robot;
+	
+	
+	
+	public InputField PlayerEditorText;
+	
+	
 	
 	// Use this for initialization
 	void Start ()
@@ -54,6 +64,10 @@ public class GameTester : MonoBehaviour
 	private void OnGUI()
 	{
 		Event ev = Event.current;
+		
+		
+		
+		
 		if (ev.type == EventType.KeyDown)
 		{
 			if (ev.keyCode == KeyCode.E)
@@ -61,6 +75,16 @@ public class GameTester : MonoBehaviour
 				robot.ResetMove();
 				return;
 			}
+
+			if (ev.keyCode == KeyCode.Return)
+			{
+				if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+				{
+					console.Setup(Player.Player1.Script);
+					Player.Player1.Execute(PlayerEditorText.text);
+				}
+			}
+			
 			
 
 			var command = "";
@@ -95,21 +119,23 @@ public class GameTester : MonoBehaviour
 			if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
 			{
 				command += @"
-							Tiles(robot.pos + direction).highlight = true
-							Tiles(robot.pos + direction).color = Color(1,0,0)
+							local robot = player.robots()[1]
+							Tiles[robot.pos + direction].highlight = true
+							Tiles[robot.pos + direction].color = Color(1,0,0)
 							robot.attack(direction)
 							";
 			}
 			else
 			{
 				command += @"
-							Tiles(robot.pos).highlight = true
-							Tiles(robot.pos).color = Color(0,1,0)
+							local robot = player.robots()[1]
+							Tiles[robot.pos].highlight = true
+							Tiles[robot.pos].color = Color(0,1,0)
 							robot.move(direction)
 							";
 			}
 			Debug.Log(command);
-			mscript.DoString(command);
+			Player.Player1.Execute(command);
 			
 			
 			

@@ -24,11 +24,13 @@ namespace Pieecs.Scripts.Utils
             
             UserData.RegisterProxyType<TileProxy, Tile>(v => new TileProxy(v));
             UserData.RegisterProxyType<RobotProxy, Robot>(v => new RobotProxy(v));
+            UserData.RegisterProxyType<BaseProxy, Base>(v => new BaseProxy(v));
             UserData.RegisterProxyType<PlayerProxy, Player>(v => new PlayerProxy(v));
+            UserData.RegisterProxyType<BoardProxy, Board>(v => new BoardProxy(v));
         }
         
-        
-        
-        
     }
+    
+    
+    
 }

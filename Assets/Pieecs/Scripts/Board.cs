@@ -5,6 +5,7 @@ using MoonSharp.Interpreter;
 using Pieecs.Scripts.Utils;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Board : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class Board : MonoBehaviour
 	public GameObject RobotPrefab;
 	public GameObject BasePrefab;
 	public GameObject CapturePointPrefab;
-	
+
 	
 	public Tile[,] Tiles;
 	
@@ -101,6 +102,55 @@ public class Board : MonoBehaviour
 
 	public static void Setup(Script scr)
 	{
-		scr.Globals["Tiles"] = (Func<VectorProxy, Tile>) getTile;
+		scr.Globals["Tiles"] = Instance;
 	}
+}
+
+
+
+[MoonSharpUserData]
+public class BoardProxy
+{
+	public Board board;
+
+	public BoardProxy(Board board)
+	{
+		this.board = board;
+	}
+	
+	
+	public Tile getTile(VectorProxy vec)
+	{
+		if (vec == null) return null;
+		return Board.getTile((int)vec.X,(int)vec.Y);
+	}
+
+	public Tile this[VectorProxy vec]
+	{
+		get { return getTile(vec); }
+	}
+	
+
+	public List<Tile> enabled
+	{
+		get
+		{
+			var lst = new List<Tile>();
+			foreach (var boardTile in board.Tiles)
+			{
+				if (boardTile.selectionBox.enabled)
+				{
+					lst.Add(boardTile);
+				}
+			}
+
+			return lst;
+		}
+	}
+	
+	
+	
+	
+	
+	
 }

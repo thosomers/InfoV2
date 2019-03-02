@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using MoonSharp.Interpreter;
 using UnityEngine;
 
 public class Base : PlayerObject
@@ -83,3 +84,16 @@ public class Base : PlayerObject
 		return tiles;
 	}
 }
+
+
+[MoonSharpUserData]
+public class BaseProxy
+{
+	public Base Base;
+
+	public BaseProxy(Base @base)
+	{
+		Base = @base;
+	}
+}
+

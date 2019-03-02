@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using MoonSharp.Interpreter;
+using Pieecs.Scripts.Utils;
 using UnityEngine;
 
 public class Player
@@ -23,13 +25,20 @@ public class Player
 	public Base MyBase;
 	public HashSet<CapturePoint> MyCapturePoints = new HashSet<CapturePoint>();
 
+	private Script playerScript;
+	public Script Script
+	{
+		get { return playerScript; }
+	}
+
 	public void Setup()
 	{
 		MyBase = Base.newBase(this);
-		MyCapturePoints.Add(CapturePoint.newCapturePoint(this));
+		//MyCapturePoints.Add(CapturePoint.newCapturePoint(this));
 		MyRobots.Add(Robot.newRobot(this,RobotClass.Guard));
 
-
+		playerScript = LuaHandler.NewScript();
+		playerScript.Globals["player"] = this;
 	}
 
 	// Use this for initialization
@@ -40,6 +49,30 @@ public class Player
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	private Action<object> printAction;
+
+	public void Execute(string text)
+	{
+		try
+		{
+			playerScript.DoString(text);
+		}
+		catch (InterpreterException e)
+		{
+			playerScript.LoadString("print(...)").Function.Call(e.DecoratedMessage);
+		}
+		catch (IndexOutOfRangeException e)
+		{
+			playerScript.LoadString("print(...)").Function.Call(e.Message);
+		}
+	}
+
+	public void SetPrint(Action<object> func)
+	{
+		printAction = func;
+		playerScript.Globals["print"] = func;
 	}
 }
 

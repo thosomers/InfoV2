@@ -73,6 +73,11 @@ public class TileProxy
 		get { return tile.Y; }
 	}
 
+	public VectorProxy Pos
+	{
+		get { return new VectorProxy(X,Y);}
+	}
+
 	public PlayerObject Object
 	{
 		get
@@ -92,5 +97,17 @@ public class TileProxy
 	{
 		get { return tile.selectionBox.getColor(); }
 		set { tile.selectionBox.setColor(value);}
+	}
+
+	public override bool Equals(object obj)
+	{
+		var proxy = obj as TileProxy;
+		if (proxy != null)
+		{
+			return this.tile == proxy.tile;
+		}
+		
+		
+		return base.Equals(obj);
 	}
 }

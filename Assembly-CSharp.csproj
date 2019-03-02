@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\EditorIG\ConsoleController.cs" />
      <Compile Include="Assets\FlyCam.cs" />
      <Compile Include="Assets\GameTester.cs" />
      <Compile Include="Assets\Pieecs\Scripts\Base.cs" />

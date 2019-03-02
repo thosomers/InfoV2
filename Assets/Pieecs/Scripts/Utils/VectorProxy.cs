@@ -41,6 +41,16 @@ namespace Pieecs.Scripts.Utils
         {
             return new VectorProxy(a.Vector - b.Vector);
         }
+        
+        public static VectorProxy operator -(VectorProxy a)
+        {
+            return new VectorProxy(-a.X,-a.Y);
+        }
+
+        public static VectorProxy operator *(int n, VectorProxy a)
+        {
+            return new VectorProxy(n*a.X,n*a.Y);
+        }
 
         public static void Setup(Script script)
         {
@@ -51,5 +61,9 @@ namespace Pieecs.Scripts.Utils
 
         }
 
+        public override string ToString()
+        {
+            return "Vector(" + X + "," + Y + ")";
+        }
     }
 }
