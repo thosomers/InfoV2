@@ -55,10 +55,7 @@ public class Robot : PlayerObject {
 
 		this.transform.position = new Vector3(X,0,Y);
 
-		foreach (var tile in Tiles())
-		{
-			tile.Object = this;
-		}
+		Tile().Object = this;
 
 
 	}
@@ -78,13 +75,10 @@ public class Robot : PlayerObject {
 		return robot;
 	}
 
-	public override HashSet<Tile> Tiles()
+	public override Tile Tile()
 	{
-		var tiles = new HashSet<Tile>();
 
-		tiles.Add(Board.Instance.Tiles[X, Y]);
-
-		return tiles;
+		return Board.getTile(X,Y);
 	}
 
 	public bool Attack(int dx, int dy)
@@ -168,22 +162,14 @@ public class Robot : PlayerObject {
 
 		Rotate(dx, dy);
 		
-		foreach (var tile in Tiles())
-		{
-			tile.Object = null;
-			//tile.selectionBox.setColor(new BetterColor(Color.red));
+		Tile().Object = null;
+		//tile.selectionBox.setColor(new BetterColor(Color.red));
 			
-		}
 
 		X = nx;
 		Y = ny;
 		
-		foreach (var tile in Tiles())
-		{
-			tile.Object = this;
-			//tile.selectionBox.setColor(new BetterColor(Color.blue));
-			//tile.selectionBox.setEnabled(!tile.selectionBox.getEnabled());
-		}
+		Tile().Object = this;
 
 		stepsLeft -= 1;
 		
@@ -223,11 +209,11 @@ public class RobotClass
 }
 
 [MoonSharpUserData]
-public class RobotProxy
+public class RobotProxy : PlayerObjectProxy
 {
 	public Robot Robot;
 
-	public RobotProxy(Robot robot)
+	public RobotProxy(Robot robot) : base(robot)
 	{
 		Robot = robot;
 	}
@@ -257,11 +243,14 @@ public class RobotProxy
 
 	public bool Attack(VectorProxy vec)
 	{
+		if (!ActionAllowed()) return false;
+		
 		return Robot.Attack((int) vec.X, (int) vec.Y);
 	}
 
 	public int Move(VectorProxy vec)
 	{
+		if (!ActionAllowed()) return -1;
 		
 		var ret = Robot.Move((int) vec.X,(int) vec.Y);
 		

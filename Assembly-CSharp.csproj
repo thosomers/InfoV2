@@ -53,6 +53,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\DiamondSquare\DiamondSquare4.cs" />
+     <Compile Include="Assets\DiamondSquare\HeightTile.cs" />
+     <Compile Include="Assets\DiamondSquare\PathFinding\Grid.cs" />
+     <Compile Include="Assets\DiamondSquare\PathFinding\Node.cs" />
+     <Compile Include="Assets\DiamondSquare\PathFinding\PathFinding.cs" />
+     <Compile Include="Assets\DiamondSquare\PathFinding\Point.cs" />
      <Compile Include="Assets\EditorIG\ConsoleController.cs" />
      <Compile Include="Assets\FlyCam.cs" />
      <Compile Include="Assets\GameTester.cs" />
@@ -66,7 +72,9 @@
      <Compile Include="Assets\Pieecs\Scripts\Tile.cs" />
      <Compile Include="Assets\Pieecs\Scripts\Utils\ColorProxy.cs" />
      <Compile Include="Assets\Pieecs\Scripts\Utils\LuaHandler.cs" />
+     <Compile Include="Assets\Pieecs\Scripts\Utils\PlayerObjectProxy.cs" />
      <Compile Include="Assets\Pieecs\Scripts\Utils\VectorProxy.cs" />
+     <Compile Include="Assets\Terrain\TerrainGen.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>/home/informatica/InfoProjectSharp/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

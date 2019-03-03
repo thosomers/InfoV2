@@ -75,14 +75,6 @@ public class GameTester : MonoBehaviour
 				robot.ResetMove();
 				return;
 			}
-
-			if (ev.keyCode == KeyCode.Return)
-			{
-				if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-				{
-					console.Setup(Player.Player1.Script);
-					Player.Player1.Execute(PlayerEditorText.text);
-				}
 			}
 			
 			
@@ -141,7 +133,28 @@ public class GameTester : MonoBehaviour
 			
 			
 		}
+	
+		public void SetP1()
+		{
+			
+			console.Setup(Player.Player1.Script);
+			Player.Player1.setText(PlayerEditorText.text);
+			
+		}
+		
+		public void SetP2()
+		{
+			
+			console.Setup(Player.Player2.Script);
+			Player.Player2.setText(PlayerEditorText.text);
+			
+		}
+
+		public void Run()
+		{
+			Player.DoTurn();
+		}
 
 
-	}
+
 }

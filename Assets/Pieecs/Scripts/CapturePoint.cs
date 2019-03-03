@@ -33,11 +33,7 @@ public class CapturePoint : PlayerObject {
 
 		this.transform.position = new Vector3(posx,0,posy);
 
-
-		foreach (var tile in Tiles())
-		{
-			tile.Object = this;
-		}
+		this.Tile().Object = this;
 
 
 	}
@@ -90,18 +86,8 @@ public class CapturePoint : PlayerObject {
 		return capture;
 	}
 
-	public override HashSet<Tile> Tiles()
+	public override Tile Tile()
 	{
-		var tiles = new HashSet<Tile>();
-		
-		for (int x = 0; x < Width; x++)
-		{
-			for (int y = 0; y < Height; y++)
-			{
-				tiles.Add(Board.Instance.Tiles[Xmin + x, Ymin + y]);
-			}
-		}
-
-		return tiles;
+		return Board.Instance.Tiles[Xmin, Ymin];
 	}
 }

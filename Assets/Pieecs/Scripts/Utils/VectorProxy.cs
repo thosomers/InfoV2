@@ -65,5 +65,15 @@ namespace Pieecs.Scripts.Utils
         {
             return "Vector(" + X + "," + Y + ")";
         }
+
+
+        public float Length
+        {
+            get
+            {
+                return Math.Abs(X) + Math.Abs(Y);
+            }
+        }
+        
     }
 }

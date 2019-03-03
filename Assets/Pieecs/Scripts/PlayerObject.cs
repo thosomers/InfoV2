@@ -23,10 +23,7 @@ public abstract class PlayerObject : MonoBehaviour
 
     protected virtual void Destroy()
     {
-        foreach (var tile in Tiles())
-        {
-            tile.Object = null;
-        }
+        Tile().Object = null;
 		
         GameObject.Destroy(this.gameObject);
     }
@@ -37,7 +34,7 @@ public abstract class PlayerObject : MonoBehaviour
 
 
 
-    public abstract HashSet<Tile> Tiles();
+    public abstract Tile Tile();
 
     public Player Player { get; protected set; }
 
