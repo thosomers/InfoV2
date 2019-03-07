@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 
 namespace PathFind
@@ -55,20 +56,42 @@ namespace PathFind
                 }
             }
         }
+        
+        public Grid(int width, int height, Tile[,] walkable_tiles)
+        {
+            gridSizeX = width;
+            gridSizeY = height;
+            nodes = new Node[width, height];
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    nodes[x, y] = walkable_tiles[x,y].tileNode;
+                }
+            }
+        }
+        
+        
 
         public List<Node> GetNeighbours(Node node)
         {
             List<Node> neighbours = new List<Node>();
 
+            
+            
+            
+            
+            
             for (int x = -1; x <= 1; x++)
             {
                 for (int y = -1; y <= 1; y++)
                 {
-                    if (x == 0 && y == 0)
+                    if (Math.Abs(x) + Math.Abs(y) != 1)
                         continue;
 
-                    int checkX = node.gridX + x;
-                    int checkY = node.gridY + y;
+                    int checkX = node.GridX + x;
+                    int checkY = node.GridY + y;
 
                     if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY)
                     {

@@ -2,9 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using MoonSharp.Interpreter;
+using PathFind;
 using Pieecs.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.UI;
+
+
 
 public class Board : MonoBehaviour
 {
@@ -28,7 +31,6 @@ public class Board : MonoBehaviour
 
 	
 	public Tile[,] Tiles;
-	
 	
 	
 	
@@ -148,10 +150,27 @@ public class BoardProxy
 			return lst;
 		}
 	}
+
+
+	private PathFind.Grid grid = null;
+
+
+	private Tile PointToTile(Point point)
+	{
+		return Board.Instance.Tiles[point.x, point.y];
+	}
 	
-	
-	
-	
+	public List<Tile> pathBetween(Tile t1, Tile t2)
+	{
+		if (grid == null)
+		{
+			grid = new PathFind.Grid(Board.Instance.SIZE,Board.Instance.SIZE,Board.Instance.Tiles);
+		}
+
+		var path =  Pathfinding.FindPath(grid, new Point(t1.X, t1.Y), new Point(t2.X, t2.Y));
+
+		return path.ConvertAll(new Converter<Point, Tile>(PointToTile));
+	}
 	
 	
 }

@@ -35,7 +35,7 @@ namespace PathFind
             {
                 foreach (Node node in nodes_path)
                 {
-                    ret.Add(new Point(node.gridX, node.gridY));
+                    ret.Add(new Point(node.GridX, node.GridY));
                 }
             }
             return ret;
@@ -72,12 +72,18 @@ namespace PathFind
 
                 foreach (Node neighbour in grid.GetNeighbours(currentNode))
                 {
-                    if (!neighbour.walkable || closedSet.Contains(neighbour))
+                    if (neighbour == targetNode)
+                    {
+                        neighbour.parent = currentNode;
+                        return RetracePath(grid, startNode, targetNode);
+                    }
+                    
+                    if (!neighbour.Walkable() || closedSet.Contains(neighbour))
                     {
                         continue;
                     }
 
-                    int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour) * (int)(10.0f * neighbour.penalty);
+                    int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour) * (int)(10.0f * neighbour.Penalty());
                     if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
                     {
                         neighbour.gCost = newMovementCostToNeighbour;
@@ -109,8 +115,8 @@ namespace PathFind
 
         private static int GetDistance(Node nodeA, Node nodeB)
         {
-            int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
-            int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
+            int dstX = Mathf.Abs(nodeA.GridX - nodeB.GridX);
+            int dstY = Mathf.Abs(nodeA.GridY - nodeB.GridY);
 
             if (dstX > dstY)
                 return 14 * dstY + 10 * (dstX - dstY);

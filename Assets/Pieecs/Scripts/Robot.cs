@@ -226,6 +226,12 @@ public class RobotProxy : PlayerObjectProxy
 		get { return new VectorProxy(Robot.X,Robot.Y);}
 	}
 
+	public Tile Tile
+	{
+		get { return Robot.Tile(); }
+	}
+	
+
 	public int Steps
 	{
 		get { return Robot.stepsLeft; }

@@ -35,7 +35,6 @@ public class GameTester : MonoBehaviour
 		mscript.Globals["robot"] = robot;
 	}
 	
-	
 	// Update is called once per frame
 	void Update ()
 	{
@@ -48,6 +47,11 @@ public class GameTester : MonoBehaviour
 				isSet = true;
 				break;
 			}
+			
+			
+			
+			
+			
 		}
 	}
 

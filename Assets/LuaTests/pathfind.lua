@@ -1,173 +1,217 @@
-function table.contains(tbl,val)
-  for i,v in pairs(tbl) do
-    if v == val then return true end
+function makeAStar()
+  local obj = {}
+
+  ----------------------------------------------------------------
+  -- local variables
+  ----------------------------------------------------------------
+
+  local INF = 1/0
+  local cachedPaths = nil
+
+  ----------------------------------------------------------------
+  -- local functions
+  ----------------------------------------------------------------
+
+  function dist ( x1, y1, x2, y2 )
+    
+    return math.sqrt ( math.pow ( x2 - x1, 2 ) + math.pow ( y2 - y1, 2 ) )
   end
-  return false
-end
 
-function table.insertSort(tbl,val,func)
-  
-  local myscore = func(val)
-  
-  for i=1, #tbl do
-    if (myscore < func(tbl[i])) then
-      table.insert(tbl,i,val)
-      return
-    end
+  function dist_between ( nodeA, nodeB )
+
+    return dist ( nodeA.x, nodeA.y, nodeB.x, nodeB.y )
   end
-  
-  table.insert(tbl,val)
-end
 
+  function heuristic_cost_estimate ( nodeA, nodeB )
 
-Directions = {}
-Directions.N = Vector(0,1)
-Directions.E = Vector(1,0)
-Directions.S = -Directions.N
-Directions.W = -Directions.E
-
-
-
-local Point = {}
-
-Point.dict = {}
-
-Point.mt = {}
-Point.mt.__eq = function(a,b)
-  return a.x == b.x and a.y == b.y
-end
-
-
-
-
-
-
-function Point.fromTile(tile)
-  
-  if Point.dict[tile] then
-    return Point.dict[tile]
+    return dist ( nodeA.x, nodeA.y, nodeB.x, nodeB.y )
   end
-  
-  
-  
-  local point = setmetatable({},Point.mt)
-  point.x = tile.x
-  point.y = tile.y
-  point.tile = tile
-  
-  point.neighbors = function()
-    local ns = {}
-    for i,dir in pairs(Directions) do
-      local ntile = Tiles[tile.pos+dir]
-      if ntile and ntile.Walkable then
-        table.insert(ns,Point.fromTile(ntile))
+
+  function is_valid_node ( node, neighbor )
+
+    return true
+  end
+
+  function lowest_f_score ( set, f_score )
+
+    local lowest, bestNode = INF, nil
+    for _, node in ipairs ( set ) do
+      local score = f_score [ node ]
+      if score < lowest then
+        lowest, bestNode = score, node
       end
     end
-    return ns
+    return bestNode
   end
-  
-  point.score = function()
-    if tile.Object then
-      return 100
+
+  function neighbor_nodes ( theNode, nodes )
+
+    local neighbors = {}
+    for _, node in ipairs ( nodes ) do
+      if theNode ~= node and is_valid_node ( theNode, node ) then
+        table.insert ( neighbors, node )
+      end
+    end
+    return neighbors
+  end
+
+  function not_in ( set, theNode )
+
+    for _, node in ipairs ( set ) do
+      if node == theNode then return false end
+    end
+    return true
+  end
+
+  function remove_node ( set, theNode )
+
+    for i, node in ipairs ( set ) do
+      if node == theNode then 
+        set [ i ] = set [ #set ]
+        set [ #set ] = nil
+        break
+      end
+    end	
+  end
+
+  function unwind_path ( flat_path, map, current_node )
+
+    if map [ current_node ] then
+      table.insert ( flat_path, 1, map [ current_node ] ) 
+      return unwind_path ( flat_path, map, map [ current_node ] )
     else
-      return 1
+      return flat_path
     end
   end
-  
-  Point.dict[tile] = point
-  return point
-end
 
-function Point.fromXY(x,y)
-  return Point.fromTile(Tiles[Vector(x,y)])
-end
+  ----------------------------------------------------------------
+  -- pathfinding functions
+  ----------------------------------------------------------------
 
-function Point.fromPos(vec)
-  return Point.fromTile(Tiles[vec])
-end
+  function a_star ( start, goal, nodes, valid_node_func )
 
-function reconstruct_path(cameFrom,current)
-  local total_path = {current}
-  while cameFrom[current] do
-    current = cameFrom[current]
-    table.insert(total_path,1,current)
-  end
-  return total_path
-end
+    local closedset = {}
+    local openset = { start }
+    local came_from = {}
 
-function heuristic_cost_estimate(a,b)
-  return math.pow(math.abs(a.x - b.x)^2+math.abs(a.y - b.y)^2,0.5)
-end
+    if valid_node_func then is_valid_node = valid_node_func end
 
+    local g_score, f_score = {}, {}
+    g_score [ start ] = 0
+    f_score [ start ] = g_score [ start ] + heuristic_cost_estimate ( start, goal )
 
-function A_Star(start,goal)
-  local closedSet = setmetatable({},{__index=table})
-  
-  local openSet = setmetatable({start},{__index=table})
-  
-  local cameFrom = {}
-  
-  local gScore = setmetatable({},{__index = function(t,k) t[k] = 1000; return 1000 end})
-  
-  gScore[start] = 0
-  
-  fScore = setmetatable({},{__index = function(t,k) t[k] = 1000; return 1000 end})
-  
-  fScore[start] = heuristic_cost_estimate(start,goal)
-  
-  while #openSet > 0 do
-    current = openSet[1]
-    --print("Checking: "..tostring(current.x)..","..tostring(current.y))
-    --current.tile.highlight = true
+    while #openset > 0 do
     
-    if current == goal then
-      return reconstruct_path(cameFrom,current)
+      local current = lowest_f_score ( openset, f_score )
+      if current == goal then
+        local path = unwind_path ( {}, came_from, goal )
+        table.insert ( path, goal )
+        return path
+      end
+
+      remove_node ( openset, current )		
+      table.insert ( closedset, current )
+      
+      local neighbors = neighbor_nodes ( current, nodes )
+      for _, neighbor in ipairs ( neighbors ) do 
+        if not_in ( closedset, neighbor ) then
+        
+          local tentative_g_score = g_score [ current ] + dist_between ( current, neighbor )
+           
+          if not_in ( openset, neighbor ) or tentative_g_score < g_score [ neighbor ] then 
+            came_from 	[ neighbor ] = current
+            g_score 	[ neighbor ] = tentative_g_score
+            f_score 	[ neighbor ] = g_score [ neighbor ] + heuristic_cost_estimate ( neighbor, goal )
+            if not_in ( openset, neighbor ) then
+              table.insert ( openset, neighbor )
+            end
+          end
+        end
+      end
     end
-    
-    openSet:remove(1)
-    closedSet:insert(current)
-    
-    for _,neighbor in pairs(current.neighbors()) do
-      if closedSet:contains(neighbor) then
-        goto continue
-      end
-      
-      tentative_gScore = gScore[current] + neighbor.score()
-      
-      if not openSet:contains(neighbor) then
-        openSet:insertSort(neighbor,function(v) return fScore[v] end)
-      elseif tentative_gScore >= gScore[neighbor] then
-        goto continue
-      end
-      
-      cameFrom[neighbor] = current
-      gScore[neighbor] = tentative_gScore
-      fScore[neighbor] = tentative_gScore + heuristic_cost_estimate(neighbor,goal)
-      
-      if neighbor == goal then
-        return reconstruct_path(cameFrom,neighbor)
-      end
-      
-      ::continue::
-    end
+    return nil -- no valid path
   end
+
+  ----------------------------------------------------------------
+  -- exposed functions
+  ----------------------------------------------------------------
+
+  function clear_cached_paths ()
+
+    cachedPaths = nil
+  end
+  obj.clear_cached_paths = clear_cached_paths
+
+  function distance ( x1, y1, x2, y2 )
+    
+    return dist ( x1, y1, x2, y2 )
+  end
+  obj.distance = distance
+
+  function path ( start, goal, nodes, ignore_cache, valid_node_func )
+
+    if not cachedPaths then cachedPaths = {} end
+    if not cachedPaths [ start ] then
+      cachedPaths [ start ] = {}
+    elseif cachedPaths [ start ] [ goal ] and not ignore_cache then
+      return cachedPaths [ start ] [ goal ]
+    end
+
+        local resPath = a_star ( start, goal, nodes, valid_node_func )
+        if not cachedPaths [ start ] [ goal ] and not ignore_cache then
+                cachedPaths [ start ] [ goal ] = resPath
+        end
+
+    return resPath
+  end
+  obj.path = path
+
+  return obj
 end
-    
-    
-    
-    
-    
+
+if (_G.astar == nil) then
+  _G.astar = makeAStar()
+end
 
 
-local b1 = player.Robots()[1]
-local b2 = enemy.Base()
+--MyCode
 
-for i,v in pairs(A_Star(Point.fromPos(b1.pos),Point.fromPos(b2.pos))) do
-  print(b1.steps)
-  if b1.steps > 0 then
-    b1.move(v.tile.pos - b1.pos)
+function findPath(startTile,endTile)
+  
+  local valid_node_func = function ( node, neighbor )
+    -- helper function in the a-star module, returns distance between points
+    if math.abs(neighbor.x - node.x) + math.abs(neighbor.y - node.y) <= 1 and node.walkable then
+      if node.Object == nil or (node == startTile or neighbor == endTile) then
+        return true
+      end
+    end
+    return false
+  end
+  
+  local nodes = Tiles.toTable()
+
+  local path = astar.path( startTile, endTile, nodes, true, valid_node_func )
+  
+  return path
+end
+
+
+
+
+local robot = player.Robots()[1]
+local sPos = robot.tile
+local ePos = enemy.Base().tile
+
+local path = Tiles.pathBetween(sPos,ePos)
+print(path)
+
+
+for i,v in pairs(path) do
+  print(robot.steps)
+  if robot.steps > 0 then
+    robot.move(v.pos - robot.pos)
   end  
-  v.tile.highlight = true
+  v.highlight = true
 end
     
   

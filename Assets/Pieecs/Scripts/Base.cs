@@ -86,5 +86,11 @@ public class BaseProxy : PlayerObjectProxy
 	public VectorProxy Pos {
 		get { return new VectorProxy(Base.X,Base.Y);}
 	}
+	
+	public Tile Tile
+	{
+		get { return Base.Tile(); }
+	}
+
 }
 

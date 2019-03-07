@@ -6,9 +6,25 @@
     public class Node
     {
         // node starting params
+
+        
+        
+        public virtual bool Walkable()
+        {
+            return walkable;
+        }
+
+        public virtual float Penalty()
+        {
+            return penalty;
+        }
+        
+        public int GridX;
+        public int GridY;
+
+
         public bool walkable;
-        public int gridX;
-        public int gridY;
+
         public float penalty;
 
         // calculated values while finding path
@@ -23,8 +39,8 @@
         {
             walkable = _price != 0.0f;
             penalty = _price;
-            gridX = _gridX;
-            gridY = _gridY;
+            GridX = _gridX;
+            GridY = _gridY;
         }
 
         public int fCost

@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using MoonSharp.Interpreter;
+using PathFind;
 using Pieecs.Scripts.Utils;
 
 public class Tile : MonoBehaviour
 {
 
 	public Selection selectionBox;
+	
+	public TileNode tileNode;
 
 
 	public bool IsEmpty
@@ -38,6 +41,7 @@ public class Tile : MonoBehaviour
 		this.Position = new Vector2(x,y);
 		this.transform.localPosition = new Vector3(x,0,y);
 		this.selectionBox = this.GetComponentInChildren<Selection>();
+		this.tileNode = new TileNode(this);
 		
 	}
 
@@ -47,6 +51,26 @@ public class Tile : MonoBehaviour
 		
 	}
 }
+
+public class TileNode : Node
+{
+
+	public Tile tile;
+
+	public override bool Walkable()
+	{
+		return tile.Walkable && tile.Object == null;
+	}
+	public TileNode(Tile tile) : base(1, tile.X, tile.Y)
+	{
+		this.tile = tile;
+	}
+	
+	
+	
+	
+}
+
 
 
 [MoonSharpUserData]
