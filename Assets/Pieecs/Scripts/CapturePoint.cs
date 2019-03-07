@@ -80,7 +80,7 @@ public class CapturePoint : PlayerObject {
 
 		
 		
-		capture.Setup(P1, !P1 ? 1 : Board.Instance.WIDTH - capture.Width - 1, P1 ? 1 : Board.Instance.HEIGHT - capture.Height - 1);
+		capture.Setup(P1, !P1 ? 1 : Board.Instance.SIZE - capture.Width - 1, P1 ? 1 : Board.Instance.SIZE - capture.Height - 1);
 
 
 		return capture;

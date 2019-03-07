@@ -63,6 +63,7 @@ public class GameTester : MonoBehaviour
 
 	private void OnGUI()
 	{
+		/*
 		Event ev = Event.current;
 		
 		
@@ -130,7 +131,7 @@ public class GameTester : MonoBehaviour
 			Player.Player1.Execute(command);
 			
 			
-			
+			*/
 			
 		}
 	

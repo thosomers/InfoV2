@@ -69,7 +69,7 @@ public class Robot : PlayerObject {
 
 		var p1 = player == Player.Player1;
 
-		robot.Setup(p1,mClass, p1 ? 0 : Board.Instance.WIDTH-1, p1 ? 2 : Board.Instance.HEIGHT - 3);
+		robot.Setup(p1,mClass, p1 ? 0 : Board.Instance.SIZE-1, p1 ? 2 : Board.Instance.SIZE - 3);
 
 
 		return robot;
@@ -154,7 +154,10 @@ public class Robot : PlayerObject {
 		var nx = X + dx;
 		var ny = Y + dy;
 
-		if (!Board.exists(nx, ny) || Board.getObject(nx, ny) != null)
+
+		global::Tile tile = Board.getTile(nx, ny);
+
+		if (tile == null || !tile.Walkable  || Board.getObject(nx, ny) != null)
 		{
 			Debug.Log("Too full :(");
 			return false;

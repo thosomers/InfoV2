@@ -5,6 +5,7 @@ using System.Resources;
 using MoonSharp.Interpreter;
 using Pieecs.Scripts.Utils;
 using UnityEngine;
+using Coroutine = MoonSharp.Interpreter.Coroutine;
 
 public class Player
 {
@@ -13,12 +14,44 @@ public class Player
 
 	public static Player Active { get; set; }
 
+
+	public static bool IsRunning = false;
 	public static void DoTurn()
 	{
-		Player1.Turn();
+		if (IsRunning) return;
 
-		Player2.Turn();
+		Board.Instance.StartCoroutine(DoTurnEnumerable());
 	}
+
+	private static IEnumerator DoTurnEnumerable()
+	{
+		IsRunning = true;
+		
+		bool p1Running = true;
+
+		bool p2Running = true;
+		
+		for(;;) 
+		{
+			if (p1Running)
+			{
+				p1Running = Player1.Turn();
+				yield return null;
+			} else if (p2Running)
+			{
+				p2Running = Player2.Turn();
+				yield return null;
+			}
+			else
+			{
+				break;
+			}
+		}
+
+		IsRunning = false;
+	}
+	
+	
 
 	protected Player()
 	{
@@ -58,9 +91,11 @@ public class Player
 		ScriptText = text;
 		ScriptFunction = Script.LoadString(text);
 	}
-	
-	
-	private void Turn()
+
+
+	private DynValue routine;
+
+	private void StartTurn()
 	{
 		Player.Active = this;
 		
@@ -68,16 +103,55 @@ public class Player
 		{
 			myRobot.ResetMove();
 		}
-		
-		ScriptFunction.Function.Call();
 
+		routine = playerScript.CreateCoroutine(ScriptFunction);
+
+		routine.Coroutine.AutoYieldCounter = 100000;
+	}
+
+	private bool ResumeTurn()
+	{
+		try
+		{
+			var ret = routine.Coroutine.Resume();
+			
+			return ret.Type == DataType.YieldRequest;
+		}
+		catch (InterpreterException e)
+		{
+			playerScript.LoadString("print(...)").Function.Call(e.DecoratedMessage);
+			return false;
+		}
+	}
+
+	private void EndTurn()
+	{
 		foreach (var myRobot in MyRobots)
 		{
 			myRobot.ResetMove();
 		}
 		
 		Player.Active = null;
+		routine = null;
+	}
+	
+	
+	private bool Turn()
+	{
+		if (routine == null)
+		{
+			StartTurn();
+		}
 
+		if (ResumeTurn())
+		{
+			return true;
+		}
+		else
+		{
+			EndTurn();
+			return false;
+		}
 	}
 
 	private Action<object> printAction;

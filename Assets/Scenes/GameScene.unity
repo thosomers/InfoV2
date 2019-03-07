@@ -767,6 +767,7 @@ MonoBehaviour:
   normalMoveSpeed: 10
   slowMoveFactor: 0.25
   fastMoveFactor: 3
+  Canvas: {fileID: 1743461914}
 --- !u!4 &542548968 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4776050268476944, guid: 6d0cacf7f48fc4a8ca6d9283d4a780db,
@@ -1908,8 +1909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd5ea257f1ca4d4ab19324a8de15f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WIDTH: 20
-  HEIGHT: 20
+  SIZE: 20
   camera: {fileID: 534669904}
   TilePrefab: {fileID: 1959442502368028, guid: 6d0cacf7f48fc4a8ca6d9283d4a780db, type: 2}
   RobotPrefab: {fileID: 1357127179542178, guid: de61cbce31a764d409131994423cf9c2,

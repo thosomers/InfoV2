@@ -5,7 +5,7 @@ end
 
 local robot = player.robots()[1]
 
-local target = enemy.base()
+local target = enemy.robots()[1]
 
 
 
@@ -23,7 +23,7 @@ while true do
     break
   end
   
-  if (mrange > 0) and ((delta.length < mrange + arange) or (delta.length > targetAttackRange + 1)) then
+  if (mrange > 0) then
     local doMoveX = math.abs(delta.x) > math.abs(delta.y)
     local ret = nil
     if doMoveX then

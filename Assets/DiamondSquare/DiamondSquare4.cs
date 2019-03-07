@@ -8,7 +8,7 @@ using PathFind;
 using UnityEngine.Serialization;
 using Grid = PathFind.Grid;
 
-public class DiamondSquare4 : MonoBehaviour {
+public class DiamondSquare4 {
 	
 	float[,] HeightMap;
 	float[,] HeightMap2;
@@ -29,8 +29,13 @@ public class DiamondSquare4 : MonoBehaviour {
 	
 	
 	// Use this for initialization
-	void Start () 
+	public DiamondSquare4 (GameObject prefab, Transform terrainParent,int size = 50, int gain = 8)
 	{
+		this.Size = size;
+		this.GRAIN = gain;
+		this.Prefab = prefab;
+		this.TerrainParent = terrainParent;
+		
 		
 		pwidthpheight= (float)Size+Size;
 //		renderer.material.mainTexture.filterMode = FilterMode.Point;
@@ -76,8 +81,9 @@ public class DiamondSquare4 : MonoBehaviour {
 
 	//This is something of a "helper function" to create an initial grid
 	//before the recursive function is called. 
-	void drawPlasma(float w, float h)
+	public Tile[,] drawPlasma(float w, float h)
 	{
+		var ret = new Tile[Size,Size];
 		while (true)
 		{
 			float c1, c2, c3, c4;
@@ -118,13 +124,30 @@ public class DiamondSquare4 : MonoBehaviour {
 						var height = HeightMap2[x, y];
 						//Children[x, y].transform.localPosition = new Vector3(x, height, y);
 						Children[x, y].GetComponent<HeightTile>().SetSprite(HeightMap3[x, y]);
+						ret[x, y] = Children[x, y].GetComponent<Tile>();
+						ret[x, y].Walkable = HeightMap3[x, y];
+						ret[x,y].Setup(x, y);
 					}
 				}
+				
+				
 			}
 
 			break;
 		}
+
+		return ret;
 	}
+
+	public static Tile[,] generateMap(GameObject prefab, Transform terrainParent,int size = 50, int gain = 8)
+	{
+		var generator = new DiamondSquare4(prefab,terrainParent,size,gain);
+
+		return generator.drawPlasma(size, size);
+	}
+	
+	
+	
 
 	//This is the recursive function that implements the random midpoint
     //displacement algorithm.  It will call itself until the grid pieces

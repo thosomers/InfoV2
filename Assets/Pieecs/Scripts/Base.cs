@@ -59,7 +59,7 @@ public class Base : PlayerObject
 
 		var P1 = player == Player.Player1;
 
-		Base.Setup(P1, P1 ? 0 : Board.Instance.WIDTH - 1, P1 ? 0 : Board.Instance.HEIGHT - 1);
+		Base.Setup(P1, P1 ? 1 : Board.Instance.SIZE - 2, P1 ? 1 : Board.Instance.SIZE - 2);
 
 
 		return Base;

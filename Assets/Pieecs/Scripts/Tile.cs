@@ -30,7 +30,7 @@ public class Tile : MonoBehaviour
 	}
 
 	public Vector2 Position { get; private set; }
-
+	public bool Walkable { get; set; }
 
 
 	public void Setup(int x, int y)
@@ -98,6 +98,12 @@ public class TileProxy
 		get { return tile.selectionBox.getColor(); }
 		set { tile.selectionBox.setColor(value);}
 	}
+
+	public bool Walkable
+	{
+		get { return tile.Walkable; }
+	}
+	
 
 	public override bool Equals(object obj)
 	{

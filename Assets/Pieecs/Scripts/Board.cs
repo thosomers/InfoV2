@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using MoonSharp.Interpreter;
 using Pieecs.Scripts.Utils;
-using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,8 +13,7 @@ public class Board : MonoBehaviour
 
 
 
-	public int WIDTH;
-	public int HEIGHT;
+	public int SIZE;
 
 
 
@@ -48,6 +46,7 @@ public class Board : MonoBehaviour
 		//camera.orthographicSize = HEIGHT / 2f;
 		
 		
+		/*
 		Tiles = new Tile[WIDTH,HEIGHT];
 		for (int y = 0; y < HEIGHT; y++)
 		{
@@ -61,7 +60,9 @@ public class Board : MonoBehaviour
 
 				this.Tiles[x, y] = tile;
 			}
-		}
+		}*/
+
+		Tiles = DiamondSquare4.generateMap(TilePrefab,this.transform,size: SIZE);
 		
 		
 		
@@ -79,7 +80,7 @@ public class Board : MonoBehaviour
 
 	public static bool exists(int x, int y)
 	{
-		return x >= 0 && x < Instance.WIDTH && y >= 0 && y < Instance.HEIGHT;
+		return x >= 0 && x < Instance.SIZE && y >= 0 && y < Instance.SIZE;
 	}
 
 	public static PlayerObject getObject(int x, int y)
