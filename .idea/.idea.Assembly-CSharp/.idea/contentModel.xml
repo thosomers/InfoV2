@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/.Rider2018.3/system/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2018.3/system/resharper-host/local/Transient/ReSharperHost/v183/SolutionCaches/_Jurrasic.-436375830.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="DiamondSquare" t="Include">
+          <e p="DiamondSquare4.cs" t="Include" />
+          <e p="HeightTile.cs" t="Include" />
+          <e p="PathFinding" t="Include">
+            <e p="Grid.cs" t="Include" />
+            <e p="Node.cs" t="Include" />
+            <e p="PathFinding.cs" t="Include" />
+            <e p="Point.cs" t="Include" />
+          </e>
+        </e>
+        <e p="EditorIG" t="Include">
+          <e p="ConsoleController.cs" t="Include" />
+        </e>
+        <e p="FlyCam.cs" t="Include" />
+        <e p="GameTester.cs" t="Include" />
+        <e p="Pieecs" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="Base.cs" t="Include" />
+            <e p="Board.cs" t="Include" />
+            <e p="CapturePoint.cs" t="Include" />
+            <e p="Player.cs" t="Include" />
+            <e p="PlayerObject.cs" t="Include" />
+            <e p="Robot.cs" t="Include" />
+            <e p="Selection.cs" t="Include" />
+            <e p="Tile.cs" t="Include" />
+            <e p="Utils" t="Include">
+              <e p="ColorProxy.cs" t="Include" />
+              <e p="LuaHandler.cs" t="Include" />
+              <e p="PlayerObjectProxy.cs" t="Include" />
+              <e p="VectorProxy.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Terrain" t="Include">
+          <e p="TerrainGen.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Temp/bin" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

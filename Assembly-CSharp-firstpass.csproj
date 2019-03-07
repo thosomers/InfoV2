@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LangVersion>4</LangVersion>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <_TargetFrameworkDirectories>non_empty_path_generated_by_rider_editor_plugin</_TargetFrameworkDirectories>
+    <_FullFrameworkReferenceAssemblyPaths>non_empty_path_generated_by_rider_editor_plugin</_FullFrameworkReferenceAssemblyPaths>
+    <DisableHandlePackageFileConflicts>true</DisableHandlePackageFileConflicts>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace>
+    </RootNamespace>
+    <ProjectGuid>{C4555377-D622-10EE-BDAF-DACAC0E3700E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>.</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_2_17;UNITY_2018_2;UNITY_2018;PLATFORM_ARCH_64;UNITY_64;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_TEXTURE_STREAMING;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_VIDEO;ENABLE_PACKMAN;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_LOCALIZATION;PLATFORM_STANDALONE_LINUX;PLATFORM_STANDALONE;UNITY_STANDALONE_LINUX;UNITY_STANDALONE;UNITY_STANDALONE_LINUX_API;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_SPATIALTRACKING;ENABLE_MODULAR_UNITYENGINE_ASSEMBLIES;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_LINUX;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoConfig>true</NoConfig>
+    <NoStdLib>true</NoStdLib>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
+    <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Binders\Binder.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Binders\BinderMethod.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Binders\BinderUtilities.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Binders\ClrBinder.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Binders\FieldBinders.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Binders\JSBinder.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Binders\JSBinderMethod.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Binders\MethodBinder.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Debugging\COMHelpers.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Debugging\SourceCodePosition.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Debugging\SourceCodeSpan.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Emit\EmitConversion.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Emit\EmitHelpers.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Emit\ILGenerator\DynamicILGenerator.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Emit\ILGenerator\ILGenerator.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Emit\ILGenerator\ILLabel.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Emit\ILGenerator\ILLocalVariable.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Emit\ILGenerator\LoggingILGenerator.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Emit\ILGenerator\ReflectionEmitILGenerator.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Emit\LongJumpException.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Emit\MethodOptimizationHints.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Emit\OptimizationInfo.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Emit\PrimitiveType.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Emit\PrimitiveTypeUtilities.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Expressions\AssignmentExpression.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Expressions\BinaryExpression.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Expressions\Expression.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Expressions\FunctionCallExpression.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Expressions\FunctionExpression.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Expressions\GroupingExpression.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Expressions\IReferenceExpression.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Expressions\ListExpression.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Expressions\LiteralExpression.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Expressions\MemberAccessExpression.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Expressions\NameExpression.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Expressions\NewExpression.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Expressions\OperatorExpression.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Expressions\TernaryExpression.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Expressions\ThisExpression.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Expressions\UnaryExpression.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Lexer\IdentifierToken.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Lexer\KeywordToken.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Lexer\Lexer.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Lexer\LiteralToken.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Lexer\PunctuatorToken.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Lexer\RegularExpressionLiteral.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Lexer\Token.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\MethodGenerator\CodeContext.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\MethodGenerator\CompilerOptions.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\MethodGenerator\EvalMethodGenerator.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\MethodGenerator\FunctionMethodGenerator.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\MethodGenerator\GeneratedMethod.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\MethodGenerator\GlobalMethodGenerator.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\MethodGenerator\MethodGenerator.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Parser\AstNode.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Parser\Operator.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Parser\Parser.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Scope\DeclarativeScope.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Scope\ObjectScope.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Scope\Scope.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\BlockStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\BreakStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\ContinueStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\DebuggerStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\DoWhileStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\EmptyStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\ExpressionStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\ForInStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\ForStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\IfStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\LoopStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\ReturnStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\Statement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\SwitchStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\ThrowStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\TryCatchFinallyStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\VarStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\WhileStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Compiler\Statements\WithStatement.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\BigInteger.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\CompatibilityMode.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\CompiledScript.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\ConcatenatedString.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\JavaScriptException.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\Null.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\NumberFormatter.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\NumberParser.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\ReflectionHelpers.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\ScriptEngine.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\ScriptSource\FileScriptSource.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\ScriptSource\ScriptSource.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\ScriptSource\StringScriptSource.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\Serialization.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\StringHelpers.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\TypeComparer.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\TypeConverter.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\TypeUtilities.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Core\Undefined.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Array\ArrayConstructor.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Array\ArrayInstance.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Array\SparseArray.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Boolean\BooleanConstructor.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Boolean\BooleanInstance.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\ClrWrapper\ClrInstanceTypeWrapper.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\ClrWrapper\ClrInstanceWrapper.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\ClrWrapper\ClrStaticTypeWrapper.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Date\DateConstructor.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Date\DateInstance.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Date\DateParser.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Error\ErrorConstructor.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Error\ErrorInstance.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\FirebugConsole\FirebugConsole.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\FirebugConsole\IFirebugConsoleOutput.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\FirebugConsole\StandardConsoleOutput.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Function\ArgumentsInstance.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Function\BoundFunction.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Function\ClrFunction.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Function\Delegates.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Function\FunctionConstructor.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Function\FunctionInstance.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Function\ThrowTypeErrorFunction.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Function\UserDefinedFunction.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\GlobalObject.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\JSON\JSONLexer.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\JSON\JSONObject.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\JSON\JSONParser.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\JSON\JSONSerializer.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\MathObject.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Number\NumberConstructor.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Number\NumberInstance.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Object\Attributes.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Object\HiddenClassSchema.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Object\JSFunctionFlags.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Object\ObjectConstructor.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Object\ObjectInstance.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Object\PropertyAccessorValue.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Object\PropertyAttributes.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Object\PropertyDescriptor.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Object\PropertyNameAndValue.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\Object\SchemaProperty.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\RegExp\RegExpConstructor.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\RegExp\RegExpInstance.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\String\StringConstructor.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Library\String\StringInstance.cs" />
+    <Compile Include="Assets\Plugins\Jurassic\Properties\AssemblyInfo.cs" />
+    <Reference Include="UnityEditor.StandardEvents">
+      <HintPath>/home/informatica/RiderProjects/Jurrasic/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>/home/informatica/RiderProjects/Jurrasic/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PackageManagerUI.Editor">
+      <HintPath>/home/informatica/RiderProjects/Jurrasic/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>/home/informatica/RiderProjects/Jurrasic/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.ARModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.AccessibilityModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.BaselibModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.BaselibModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CloudWebServicesModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.CloudWebServicesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterInputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterRendererModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.CrashReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.DirectorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.FacebookModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.FacebookModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.FileSystemHttpModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.FileSystemHttpModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.GameCenterModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.GridModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.HotReloadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.LocalizationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticlesLegacyModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.ParticlesLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.PerformanceReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.ProfilerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTrackingModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpatialTrackingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.StreamingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StyleSheetsModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.StyleSheetsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.SubstanceModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.TLSModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.TilemapModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TimelineModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.TimelineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.UNETModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.UmbraModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityAnalyticsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.VRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.VehiclesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.VideoModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Locator">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/Unity.Locator.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Timeline">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GoogleAudioSpatializer">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HoloLens">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>/home/informatica/.config/unity3d/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StandardEvents">
+      <HintPath>/home/informatica/.config/unity3d/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/System.Runtime.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/System.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/System.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityScript">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/UnityScript.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityScript.Lang">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/UnityScript.Lang.dll</HintPath>
+    </Reference>
+    <Reference Include="Boo.Lang">
+      <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
