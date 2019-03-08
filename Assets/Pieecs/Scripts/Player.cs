@@ -9,13 +9,14 @@ using Coroutine = MoonSharp.Interpreter.Coroutine;
 
 public class Player
 {
-	public static readonly Player Player1 = new Player();
-	public static readonly Player Player2 = new Player();
+	public static Player Player1 { get; private set; }
+	public static Player Player2 { get; private set; }
 
 	public static Player Active { get; set; }
 
 
-	public static bool IsRunning = false;
+	public static bool IsRunning { get; private set; }
+
 	public static void DoTurn()
 	{
 		if (IsRunning) return;
@@ -23,6 +24,8 @@ public class Player
 		Board.Instance.StartCoroutine(DoTurnEnumerable());
 	}
 
+	
+	
 	private static IEnumerator DoTurnEnumerable()
 	{
 		IsRunning = true;
@@ -30,6 +33,8 @@ public class Player
 		bool p1Running = true;
 
 		bool p2Running = true;
+
+		Board.ClearTiles();
 		
 		for(;;) 
 		{
@@ -69,7 +74,22 @@ public class Player
 		get { return playerScript; }
 	}
 
-	public void Setup()
+
+	public static void Setup()
+	{
+		Player1 = new Player();
+		Player2 = new Player();
+
+		IsRunning = false;
+		Active = null;
+		
+		
+		Player1.SetupInstance();
+		Player2.SetupInstance();
+	}
+	
+
+	public void SetupInstance()
 	{
 		MyBase = Base.newBase(this);
 		//MyCapturePoints.Add(CapturePoint.newCapturePoint(this));
@@ -106,7 +126,7 @@ public class Player
 
 		routine = playerScript.CreateCoroutine(ScriptFunction);
 
-		routine.Coroutine.AutoYieldCounter = 100000;
+		routine.Coroutine.AutoYieldCounter = 10000;
 	}
 
 	private bool ResumeTurn()

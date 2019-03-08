@@ -245,6 +245,12 @@ public class RobotProxy : PlayerObjectProxy
 		}
 	}
 
+	public int Range
+	{
+		get { return Robot.RClass.MoveRange + Robot.RClass.AttackRange; }
+	}
+	
+
 	public Player Player {
 		get { return Robot.Player;}
 	}

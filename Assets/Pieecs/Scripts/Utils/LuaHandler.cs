@@ -12,7 +12,7 @@ namespace Pieecs.Scripts.Utils
             
             VectorProxy.Setup(scr);
             BetterColor.Setup(scr);
-            Board.Setup(scr);
+            Board.SetupScript(scr);
             
             return scr;
         }

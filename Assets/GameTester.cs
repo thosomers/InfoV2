@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace.Pieecs.Scripts;
 using MoonSharp.Interpreter;
 using Pieecs.Scripts.Utils;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +20,11 @@ public class GameTester : MonoBehaviour
 	
 	
 	
-	public InputField PlayerEditorText;
+	public TMP_InputField PlayerEditorText;
+
+	public string p1String = "";
+	public string p2String = "";
+	
 	
 	
 	
@@ -38,21 +44,6 @@ public class GameTester : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (!isSet)
-		{
-			foreach (var mrobot in Player.Player1.MyRobots)
-			{
-				this.robot = mrobot;
-				SetRobot(robot);
-				isSet = true;
-				break;
-			}
-			
-			
-			
-			
-			
-		}
 	}
 
 
@@ -141,23 +132,20 @@ public class GameTester : MonoBehaviour
 	
 		public void SetP1()
 		{
-			
-			console.Setup(Player.Player1.Script);
-			Player.Player1.setText(PlayerEditorText.text);
+			p1String = PlayerEditorText.text;
 			
 		}
 		
 		public void SetP2()
 		{
-			
-			console.Setup(Player.Player2.Script);
-			Player.Player2.setText(PlayerEditorText.text);
+			p2String = PlayerEditorText.text;
 			
 		}
 
 		public void Run()
 		{
-			Player.DoTurn();
+			Game.Console = console;
+			Game.Start(p1String,p2String);
 		}
 
 

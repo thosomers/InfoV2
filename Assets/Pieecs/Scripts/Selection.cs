@@ -38,7 +38,7 @@ public class Selection : MonoBehaviour
 	
 	
 	// Use this for initialization
-	void Start ()
+	void Awake ()
 	{
 		renderer = this.GetComponent<SpriteRenderer>();
 		

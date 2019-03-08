@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace.Pieecs.Scripts;
 using MoonSharp.Interpreter;
 using Pieecs.Scripts.Utils;
 using UnityEngine;
@@ -70,9 +71,15 @@ public class Base : PlayerObject
 
 		return Board.getTile(X,Y);
 	}
+
+
+	protected override void Destroy()
+	{
+		base.Destroy();
+
+		Game.End(Player == Player.Player1 ? Player.Player2 : Player.Player1);
+	}
 }
-
-
 [MoonSharpUserData]
 public class BaseProxy : PlayerObjectProxy
 {
@@ -91,6 +98,8 @@ public class BaseProxy : PlayerObjectProxy
 	{
 		get { return Base.Tile(); }
 	}
+
+	public int Range = 0;
 
 }
 

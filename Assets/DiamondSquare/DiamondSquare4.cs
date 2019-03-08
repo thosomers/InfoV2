@@ -86,23 +86,24 @@ public class DiamondSquare4 {
 		var ret = new Tile[Size,Size];
 		while (true)
 		{
-			float c1, c2, c3, c4;
+			float c1, c2, c3, c4,c5;
 
 			//Assign the four corners of the intial grid random color values
 			//These will end up being the colors of the four corners of the applet.     
-			c1 = 0.7f;
-			c2 = 0.5f;
-			c3 = 0.7f;
-			c4 = 0.5f;
+			c1 = Random.Range(0.5f,1f);
+			c2 = Random.Range(0.3f, 0.7f);
+			c3 = Random.Range(0.5f,1f);
+			c4 = Random.Range(0.3f, 0.7f);
+			c5 = Random.Range(0.3f, 0.8f);
 
-			divideGrid(0.0f, 0.0f, w, h, c1, c2, c3, c4);
+			divideGrid(0.0f, 0.0f, w, h, c1, c2, c3, c4,c5);
 
 			for (var x = 0; x < Size; x++)
 			{
 				for (var y = 0; y < Size; y++)
 				{
-					HeightMap2[x, y] = (HeightMap[Size - (x + 1), Size - (y + 1)] + HeightMap[x, y]) * 3;
-					HeightMap3[x, y] = HeightMap2[x, y] > 3.5f;
+					HeightMap2[x, y] = (HeightMap[Size - (x + 1), Size - (y + 1)] + HeightMap[x, y]);
+					HeightMap3[x, y] = HeightMap2[x, y] > 1.2f;
 				}
 			}
 
@@ -111,26 +112,37 @@ public class DiamondSquare4 {
 			PathFind.Point _from = new PathFind.Point(2, 2);
 			PathFind.Point _to = new PathFind.Point(Size - 3, Size - 3);
 
-			if (PathFind.Pathfinding.FindPath(grid, _from, _to).Count == 0)
+			if (PathFind.Pathfinding.FindPath(grid, _from, _to).Count > 0)
 			{
-				continue;
+				var count = 0f;
+				var all = 0f;
+				foreach (var island in HeightMap3)
+				{
+					all++;
+					if (!island) count++;
+				}
+
+				if (count / all < 0.4f)
+				{
+					continue;
+				}
 			}
 			else
 			{
-				for (var x = 0; x < Size; x++)
+				continue;
+			}
+			
+			for (var x = 0; x < Size; x++)
+			{
+				for (var y = 0; y < Size; y++)
 				{
-					for (var y = 0; y < Size; y++)
-					{
-						var height = HeightMap2[x, y];
-						//Children[x, y].transform.localPosition = new Vector3(x, height, y);
-						Children[x, y].GetComponent<HeightTile>().SetSprite(HeightMap3[x, y]);
-						ret[x, y] = Children[x, y].GetComponent<Tile>();
-						ret[x, y].Walkable = HeightMap3[x, y];
-						ret[x,y].Setup(x, y);
-					}
+					var height = HeightMap2[x, y];
+					//Children[x, y].transform.localPosition = new Vector3(x, height, y);
+					Children[x, y].GetComponent<HeightTile>().SetSprite(HeightMap3[x, y]);
+					ret[x, y] = Children[x, y].GetComponent<Tile>();
+					ret[x, y].Walkable = HeightMap3[x, y];
+					ret[x,y].Setup(x, y);
 				}
-				
-				
 			}
 
 			break;
@@ -152,7 +164,7 @@ public class DiamondSquare4 {
 	//This is the recursive function that implements the random midpoint
     //displacement algorithm.  It will call itself until the grid pieces
     //become smaller than one pixel.   
-	void divideGrid(float x, float y, float w, float h, float c1, float c2, float c3, float c4)
+	void divideGrid(float x, float y, float w, float h, float c1, float c2, float c3, float c4,float c5 = -1f)
 	{
 	 
 	   float newWidth = w * 0.5f;
@@ -166,7 +178,7 @@ public class DiamondSquare4 {
 	   }
 	   else
 	   {
-		 float middle =(c1 + c2 + c3 + c4) * 0.25f + displace(newWidth + newHeight);      //Randomly displace the midpoint!
+		 float middle = c5 > -1f ? c5 : (c1 + c2 + c3 + c4) * 0.25f + displace(newWidth + newHeight);      //Randomly displace the midpoint!
 		 float edge1 = (c1 + c2) * 0.5f; //Calculate the edges by averaging the two corners of each edge.
 		 float edge2 = (c2 + c3) * 0.5f;
 		 float edge3 = (c3 + c4) * 0.5f;

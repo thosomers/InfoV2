@@ -63,16 +63,21 @@ public class Board : MonoBehaviour
 				this.Tiles[x, y] = tile;
 			}
 		}*/
+	}
 
+	public static void Setup()
+	{
+		Instance.SetupInstance();
+	}
+
+	private void SetupInstance()
+	{
+		for (int i = 0; i < transform.childCount; i++)
+		{
+			GameObject.Destroy(transform.GetChild(i).gameObject);
+		}
+		
 		Tiles = DiamondSquare4.generateMap(TilePrefab,this.transform,size: SIZE);
-		
-		
-		
-		Player.Player1.Setup();
-		Player.Player2.Setup();
-		
-		
-		
 	}
 	
 	// Update is called once per frame
@@ -103,10 +108,19 @@ public class Board : MonoBehaviour
 	
 	
 
-	public static void Setup(Script scr)
+	public static void SetupScript(Script scr)
 	{
 		scr.Globals["Tiles"] = Instance;
 	}
+
+	public static void ClearTiles()
+	{
+		foreach (var boardTile in Instance.Tiles)
+		{
+			boardTile.selectionBox.setEnabled(false);
+		}
+	}
+	
 }
 
 

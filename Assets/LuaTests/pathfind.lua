@@ -198,22 +198,32 @@ end
 
 
 
+
+
 local robot = player.Robots()[1]
 local sPos = robot.tile
-local ePos = enemy.Base().tile
+local ePos = enemy.Robots()[1].tile
 
 local path = Tiles.pathBetween(sPos,ePos)
-print(path)
 
 
-for i,v in pairs(path) do
-  print(robot.steps)
+function runNext(path,i)
+  local nextTile = path[i]
+  
+  if nextTile == ePos then
+    print("SUCCESS")
+    return
+  end
+  
   if robot.steps > 0 then
     robot.move(v.pos - robot.pos)
-  end  
+    v.color = Color(0,1,0)
+  end
+  
   v.highlight = true
 end
-    
+
+runNext(path,1)
   
   
   
