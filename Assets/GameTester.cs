@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using DefaultNamespace.Pieecs.Scripts;
 using MoonSharp.Interpreter;
 using Pieecs.Scripts.Utils;
@@ -34,6 +35,8 @@ public class GameTester : MonoBehaviour
 		LuaHandler.RegisterProxies();
 		mscript = LuaHandler.NewScript();
 
+		p1String = File.ReadAllText(Path.Combine(Application.dataPath, "lua/p1.lua"));
+		p2String = File.ReadAllText(Path.Combine(Application.dataPath, "lua/p2.lua"));
 	}
 
 	public void SetRobot(Robot robot)

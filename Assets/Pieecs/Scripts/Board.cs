@@ -174,17 +174,40 @@ public class BoardProxy
 		return Board.Instance.Tiles[point.x, point.y];
 	}
 	
-	public List<Tile> pathBetween(Tile t1, Tile t2)
+	public List<Tile> pathBetween2(Tile t1, Tile t2)
 	{
 		if (grid == null)
 		{
 			grid = new PathFind.Grid(Board.Instance.SIZE,Board.Instance.SIZE,Board.Instance.Tiles);
 		}
 
-		var path =  Pathfinding.FindPath(grid, new Point(t1.X, t1.Y), new Point(t2.X, t2.Y));
+		var path = Pathfinding.FindPath(grid, new Point(t1.X, t1.Y), new Point(t2.X, t2.Y));
 
-		return path.ConvertAll(new Converter<Point, Tile>(PointToTile));
+		if (path == null) return null;
+		return path.ConvertAll(PointToTile);
 	}
+	
+	public DynValue pathBetween(Script script,Tile t1, Tile t2)
+	{
+		if (grid == null)
+		{
+			grid = new PathFind.Grid(Board.Instance.SIZE,Board.Instance.SIZE,Board.Instance.Tiles);
+		}
+
+		var path = Pathfinding.FindPath(grid, new Point(t1.X, t1.Y), new Point(t2.X, t2.Y));
+
+		if (path == null || path.Count == 0)
+			return DynValue.Nil;
+
+		return DynValue.FromObject(script,path.ConvertAll(PointToTile));
+
+	}
+
+	public List<Tile> withRange(Tile t1, int range)
+	{
+		return PathFind.Pathfinding.withDistance(t1, range);
+	}
+	
 	
 	
 }

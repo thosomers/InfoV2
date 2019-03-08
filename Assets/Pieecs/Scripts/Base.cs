@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using DefaultNamespace.Pieecs.Scripts;
 using MoonSharp.Interpreter;
 using Pieecs.Scripts.Utils;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Base : PlayerObject
 {
 
 	public MeshRenderer Player1Mesh;
 	public MeshRenderer Player2Mesh;
+	
 	
 	
 	
@@ -78,6 +82,35 @@ public class Base : PlayerObject
 		base.Destroy();
 
 		Game.End(Player == Player.Player1 ? Player.Player2 : Player.Player1);
+	}
+
+	public void newRobot()
+	{
+		List<Tile> possibles = new List<Tile>();
+		
+		
+		for (int x = -1; x <= 1; x++)
+		{
+			for (int y = -1; y <= 1; y++)
+			{
+				if (Math.Abs(x) + Math.Abs(y) != 1)
+				{
+					continue;
+				}
+				
+				Tile tile = Board.getTile(this.X + x, this.Y + y);
+				if (tile.Walkable && tile.Object == null)
+				{
+					possibles.Add(tile);
+				}
+			}
+		}
+
+		if (possibles.Count == 0) return;
+
+		var selected = possibles[Random.Range(0, possibles.Count)];
+
+		Robot.newRobot(Player, RobotClass.Soldier,selected);
 	}
 }
 [MoonSharpUserData]
