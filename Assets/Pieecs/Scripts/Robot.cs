@@ -1,21 +1,43 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using MoonSharp.Interpreter;
+using Pieecs.Scripts.Utils;
 using UnityEngine;
 
 public class Robot : PlayerObject {
 
-	public Sprite P1Sprite;
-	public Sprite P2Sprite;
+	public MeshRenderer Player1Mesh;
+	public MeshRenderer Player2Mesh;
 
 	private SpriteRenderer renderer;
 	public int X { get; protected set; }
 	public int Y { get; protected set; }
 
-	
-	private int stepsLeft = 0;
-	private bool attackLeft = false;	
+
+	public int stepsLeft { get; private set; }
+
+	public bool attackLeft { get; private set; }
 	
 	public RobotClass RClass;
+
+	public void Rotate(int x, int y)
+	{
+		if (Math.Abs(x) > Math.Abs(y))
+		{
+			this.GetComponentInChildren<Transform>().eulerAngles = new Vector3(0,Math.Sign(-x)*90,0);
+		}
+		else
+		{
+			this.GetComponentInChildren<Transform>().eulerAngles = new Vector3(0,(Math.Sign(y)+1)*90,0);
+		}
+		
+		
+		
+		
+		
+	}
+	
 
 
 
@@ -27,16 +49,13 @@ public class Robot : PlayerObject {
 		
 		this.X = x;
 		this.Y = y;
-		renderer = this.GetComponent<SpriteRenderer>();
-		renderer.sprite = P1 ? P1Sprite : P2Sprite;
+		
+		var renderer = P1 ? Player1Mesh : Player2Mesh;
+		renderer.enabled = true;
 
-		this.transform.position = new Vector3(X,Y,-1);
+		this.transform.position = new Vector3(X,0,Y);
 
-
-		foreach (var tile in Tiles())
-		{
-			tile.Object = this;
-		}
+		Tile().Object = this;
 
 
 	}
@@ -50,33 +69,30 @@ public class Robot : PlayerObject {
 
 		var p1 = player == Player.Player1;
 
-		robot.Setup(p1,mClass, p1 ? 0 : Board.Instance.WIDTH-1, p1 ? 2 : Board.Instance.HEIGHT - 3);
+		robot.Setup(p1,mClass, p1 ? 0 : Board.Instance.SIZE-1, p1 ? 2 : Board.Instance.SIZE - 3);
 
 
 		return robot;
 	}
 
-	public override HashSet<Tile> Tiles()
+	public override Tile Tile()
 	{
-		var tiles = new HashSet<Tile>();
 
-		tiles.Add(Board.Instance.Tiles[X, Y]);
-
-		return tiles;
+		return Board.getTile(X,Y);
 	}
 
-	public void Attack(int dx, int dy)
+	public bool Attack(int dx, int dy)
 	{
 		if (!attackLeft)
 		{
 			Debug.Log("No attack left.");
-			return;
+			return false;
 		}
 
 		if (Mathf.Abs(dx) + Mathf.Abs(dy) > RClass.AttackRange+0.1)
 		{
 			Debug.Log("Too far");
-			return;
+			return false;
 		}
 		
 		var nx = X + dx;
@@ -87,23 +103,25 @@ public class Robot : PlayerObject {
 		if (Board.getObject(nx, ny) == null)
 		{
 			Debug.Log("Nothing to attack");
-			return;
+			return false;
 		}
 
 		
 		if (obj.Player == this.Player)
 		{
 			Debug.Log("No Self-Harm please");
-			return;
+			return false;
 		}
-		
+
+
+		Rotate(dx, dy);
 		
 		attackLeft = false;
 		Debug.Log("Attacked.");
 		stepsLeft = 0;
 		Debug.Log("Steps left: " + stepsLeft);
 		obj.RemoveHealth(RClass.AttackDamage);
-		
+		return true;
 	}
 
 
@@ -119,50 +137,48 @@ public class Robot : PlayerObject {
 		Debug.Log("Steps left: " + stepsLeft);
 	}
 	
-	public void Move(int dx, int dy)
+	public bool Move(int dx, int dy)
 	{
 		if (stepsLeft <= 0)
 		{
 			Debug.Log("No steps left.");
-			return;
+			return false;
 		}
 		
 		if (Mathf.Abs(dx) + Mathf.Abs(dy) > 1+0.1)
 		{
 			Debug.Log("Too far");
-			return;
+			return false;
 		}
 
 		var nx = X + dx;
 		var ny = Y + dy;
 
-		if (!Board.exists(nx, ny) || Board.getObject(nx, ny) != null)
+
+		global::Tile tile = Board.getTile(nx, ny);
+
+		if (tile == null || !tile.Walkable  || Board.getObject(nx, ny) != null)
 		{
 			Debug.Log("Too full :(");
-			return;
+			return false;
 		}
 
-		foreach (var tile in Tiles())
-		{
-			tile.Object = null;
-			tile.selectionBox.setColor(Color.red);
+		Rotate(dx, dy);
+		
+		Tile().Object = null;
+		//tile.selectionBox.setColor(new BetterColor(Color.red));
 			
-		}
 
 		X = nx;
 		Y = ny;
 		
-		foreach (var tile in Tiles())
-		{
-			tile.Object = this;
-			tile.selectionBox.setColor(Color.blue);
-			tile.selectionBox.setEnabled(!tile.selectionBox.getEnabled());
-		}
+		Tile().Object = this;
 
 		stepsLeft -= 1;
 		
 		Debug.Log("Steps left: " + stepsLeft);
-		this.transform.position = new Vector3(X,Y,-1);
+		this.transform.position = new Vector3(X,0,Y);
+		return true;
 	}
 
 	protected override void Destroy()
@@ -194,3 +210,72 @@ public class RobotClass
 		AttackRange = ARange;
 	}
 }
+
+[MoonSharpUserData]
+public class RobotProxy : PlayerObjectProxy
+{
+	public Robot Robot;
+
+	public RobotProxy(Robot robot) : base(robot)
+	{
+		Robot = robot;
+	}
+
+
+	public VectorProxy Pos {
+		get { return new VectorProxy(Robot.X,Robot.Y);}
+	}
+
+	public Tile Tile
+	{
+		get { return Robot.Tile(); }
+	}
+	
+
+	public int Steps
+	{
+		get { return Robot.stepsLeft; }
+	}
+
+	public int Attacks
+	{
+		get
+		{
+			return Robot.attackLeft ?  Robot.RClass.AttackRange : 0;
+		}
+	}
+
+	public int Range
+	{
+		get { return Robot.RClass.MoveRange + Robot.RClass.AttackRange; }
+	}
+	
+
+	public Player Player {
+		get { return Robot.Player;}
+	}
+
+
+	public bool Attack(VectorProxy vec)
+	{
+		if (!ActionAllowed()) return false;
+		
+		return Robot.Attack((int) vec.X, (int) vec.Y);
+	}
+
+	public int Move(VectorProxy vec)
+	{
+		if (!ActionAllowed()) return -1;
+		
+		var ret = Robot.Move((int) vec.X,(int) vec.Y);
+		
+		return ret ? Robot.stepsLeft : -1;
+	}
+
+
+
+
+
+}
+
+

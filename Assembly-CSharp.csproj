@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}</ProjectGuid>
+    <ProjectGuid>{FB8726B7-80C6-68DC-7BEE-B2A66C82951B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -53,26 +53,57 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\DiamondSquare\DiamondSquare4.cs" />
+     <Compile Include="Assets\DiamondSquare\HeightTile.cs" />
+     <Compile Include="Assets\DiamondSquare\PathFinding\Grid.cs" />
+     <Compile Include="Assets\DiamondSquare\PathFinding\Node.cs" />
+     <Compile Include="Assets\DiamondSquare\PathFinding\PathFinding.cs" />
+     <Compile Include="Assets\DiamondSquare\PathFinding\Point.cs" />
+     <Compile Include="Assets\EditorIG\ConsoleController.cs" />
+     <Compile Include="Assets\FlyCam.cs" />
      <Compile Include="Assets\GameTester.cs" />
      <Compile Include="Assets\Pieecs\Scripts\Base.cs" />
      <Compile Include="Assets\Pieecs\Scripts\Board.cs" />
      <Compile Include="Assets\Pieecs\Scripts\CapturePoint.cs" />
+     <Compile Include="Assets\Pieecs\Scripts\Game.cs" />
      <Compile Include="Assets\Pieecs\Scripts\Player.cs" />
      <Compile Include="Assets\Pieecs\Scripts\PlayerObject.cs" />
      <Compile Include="Assets\Pieecs\Scripts\Robot.cs" />
      <Compile Include="Assets\Pieecs\Scripts\Selection.cs" />
      <Compile Include="Assets\Pieecs\Scripts\Tile.cs" />
+     <Compile Include="Assets\Pieecs\Scripts\Utils\ColorProxy.cs" />
+     <Compile Include="Assets\Pieecs\Scripts\Utils\LuaHandler.cs" />
+     <Compile Include="Assets\Pieecs\Scripts\Utils\PlayerObjectProxy.cs" />
+     <Compile Include="Assets\Pieecs\Scripts\Utils\VectorProxy.cs" />
+     <Compile Include="Assets\Terrain\TerrainGen.cs" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>/home/informatica/New Unity Project/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>/home/informatica/InfoProjectSharp/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>/home/informatica/New Unity Project/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>/home/informatica/InfoProjectSharp/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>/home/informatica/New Unity Project/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>/home/informatica/InfoProjectSharp/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>/home/informatica/New Unity Project/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>/home/informatica/InfoProjectSharp/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -308,6 +339,10 @@
  <Reference Include="Boo.Lang">
  <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{70638134-FD11-97E8-DA8B-A37003EE94D0}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

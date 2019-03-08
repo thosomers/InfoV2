@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class CapturePoint : PlayerObject {
 
-	public Sprite P1Sprite;
-	public Sprite P2Sprite;
-
-	private SpriteRenderer renderer;
+	public MeshRenderer Player1Mesh;
+	public MeshRenderer Player2Mesh;
 	
 	
 	
@@ -26,19 +24,16 @@ public class CapturePoint : PlayerObject {
 		
 		this.Xmin = x;
 		this.Ymin = y;
-		renderer = this.GetComponent<SpriteRenderer>();
-		renderer.sprite = P1 ? P1Sprite : P2Sprite;
+		
+		var renderer = P1 ? Player1Mesh : Player2Mesh;
+		renderer.enabled = true;
 
 		var posx = Xmin + (Width-1) / 2f;
 		var posy = Ymin + (Height-1) / 2f;
 
-		this.transform.position = new Vector3(posx,posy,-1);
+		this.transform.position = new Vector3(posx,0,posy);
 
-
-		foreach (var tile in Tiles())
-		{
-			tile.Object = this;
-		}
+		this.Tile().Object = this;
 
 
 	}
@@ -85,24 +80,14 @@ public class CapturePoint : PlayerObject {
 
 		
 		
-		capture.Setup(P1, !P1 ? 1 : Board.Instance.WIDTH - capture.Width - 1, P1 ? 1 : Board.Instance.HEIGHT - capture.Height - 1);
+		capture.Setup(P1, !P1 ? 1 : Board.Instance.SIZE - capture.Width - 1, P1 ? 1 : Board.Instance.SIZE - capture.Height - 1);
 
 
 		return capture;
 	}
 
-	public override HashSet<Tile> Tiles()
+	public override Tile Tile()
 	{
-		var tiles = new HashSet<Tile>();
-		
-		for (int x = 0; x < Width; x++)
-		{
-			for (int y = 0; y < Height; y++)
-			{
-				tiles.Add(Board.Instance.Tiles[Xmin + x, Ymin + y]);
-			}
-		}
-
-		return tiles;
+		return Board.Instance.Tiles[Xmin, Ymin];
 	}
 }

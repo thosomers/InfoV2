@@ -1,13 +1,44 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace.Pieecs.Scripts;
+using MoonSharp.Interpreter;
+using Pieecs.Scripts.Utils;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameTester : MonoBehaviour
 {
+	private Script mscript;
+
+
+	public ConsoleController console;
+
+	private bool isSet = false;
+	public Robot robot;
+	
+	
+	
+	public TMP_InputField PlayerEditorText;
+
+	public string p1String = "";
+	public string p2String = "";
+	
+	
+	
+	
 	// Use this for initialization
 	void Start ()
 	{
+		LuaHandler.RegisterProxies();
+		mscript = LuaHandler.NewScript();
 
+	}
+
+	public void SetRobot(Robot robot)
+	{
+		mscript.Globals["robot"] = robot;
 	}
 	
 	// Update is called once per frame
@@ -16,58 +47,107 @@ public class GameTester : MonoBehaviour
 	}
 
 
+	void showMovement()
+	{
+
+	}
+	
+	
+	
+
+
 	private void OnGUI()
 	{
+		/*
 		Event ev = Event.current;
+		
+		
+		
+		
 		if (ev.type == EventType.KeyDown)
 		{
-			if (ev.keyCode == KeyCode.Space)
+			if (ev.keyCode == KeyCode.E)
 			{
-				foreach (var robot in Player.Player1.MyRobots)
-				{
-					robot.Attack(0,1);
-				}
+				robot.ResetMove();
+				return;
 			}
+			}
+			
+			
 
+			var command = "";
+			
 			if (ev.keyCode == KeyCode.W)
 			{
-				foreach (var robot in Player.Player1.MyRobots)
-				{
-					robot.Move(0,1);
-				}
+				command = "local direction = Vector(0,1)\n";
+				//robot.Move(0,1);
 			}
 			if (ev.keyCode == KeyCode.A)
 			{
-				foreach (var robot in Player.Player1.MyRobots)
-				{
-					robot.Move(-1,0);
-				}
+				command = "local direction = Vector(-1,0)\n";
+				//robot.Move(-1,0);
 			}
 			if (ev.keyCode == KeyCode.S)
 			{
-				foreach (var robot in Player.Player1.MyRobots)
-				{
-					robot.Move(0,-1);
-				}
+				command = "local direction = Vector(0,-1)\n";
+				//robot.Move(0,-1);
 			}
 			if (ev.keyCode == KeyCode.D)
 			{
-				foreach (var robot in Player.Player1.MyRobots)
-				{
-					robot.Move(1,0);
-				}
+				command = "local direction = Vector(1,0)\n";
+				//robot.Move(1,0);
 			}
 
-			if (ev.keyCode == KeyCode.E)
+
+			if (command.Length == 0)
 			{
-				foreach (var robot in Player.Player1.MyRobots)
-				{
-					robot.ResetMove();
-				}
+				return;
 			}
+			
+			if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+			{
+				command += @"
+							local robot = player.robots()[1]
+							Tiles[robot.pos + direction].highlight = true
+							Tiles[robot.pos + direction].color = Color(1,0,0)
+							robot.attack(direction)
+							";
+			}
+			else
+			{
+				command += @"
+							local robot = player.robots()[1]
+							Tiles[robot.pos].highlight = true
+							Tiles[robot.pos].color = Color(0,1,0)
+							robot.move(direction)
+							";
+			}
+			Debug.Log(command);
+			Player.Player1.Execute(command);
+			
+			
+			*/
+			
+		}
+	
+		public void SetP1()
+		{
+			p1String = PlayerEditorText.text;
+			
+		}
+		
+		public void SetP2()
+		{
+			p2String = PlayerEditorText.text;
 			
 		}
 
+		public void Run()
+		{
+			Game.Console = console;
+			Game.Start(p1String,p2String);
+		}
 
-	}
+
+
 }
