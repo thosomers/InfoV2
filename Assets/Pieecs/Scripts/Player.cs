@@ -14,13 +14,31 @@ public class Player
 
 	public static Player Active { get; set; }
 
+	
+	
+	
+	
+	public static int TurnCount = -1;
+
+	
+	//Spawn new robot after x turns
+	public static int MaxRobots = 10;
+	public static int SpawnTurnCount = 3;
+	
+	
+	
+	
 
 	public static bool IsRunning { get; private set; }
+	public static bool canSpawnTurn { get; private set; }
+
 
 	public static void DoTurn()
 	{
 		if (IsRunning) return;
 
+		TurnCount++;
+		canSpawnTurn = Player1.MyRobots.Count < MaxRobots && Player2.MyRobots.Count < MaxRobots;
 		Board.Instance.StartCoroutine(DoTurnEnumerable());
 	}
 
@@ -82,7 +100,7 @@ public class Player
 
 		IsRunning = false;
 		Active = null;
-		
+		TurnCount = -1;
 		
 		Player1.SetupInstance();
 		Player2.SetupInstance();
@@ -93,7 +111,6 @@ public class Player
 	{
 		MyBase = Base.newBase(this);
 		//MyCapturePoints.Add(CapturePoint.newCapturePoint(this));
-		MyRobots.Add(Robot.newRobot(this, RobotClass.Guard));
 
 		playerScript = LuaHandler.NewScript();
 		playerScript.Globals["player"] = this;
@@ -109,7 +126,6 @@ public class Player
 	public void setText(string text)
 	{
 		ScriptText = text;
-		ScriptFunction = Script.LoadString(text);
 	}
 
 
@@ -118,10 +134,40 @@ public class Player
 	private void StartTurn()
 	{
 		Player.Active = this;
+
+		if (TurnCount == 0)
+		{
+			
+			
+			try {
+				var setupFunc = Script.LoadString(ScriptText,null,"Player" + (this == Player1 ? "1" : "2") + ".lua");
+				
+				routine = playerScript.CreateCoroutine(setupFunc);
+
+				routine.Coroutine.AutoYieldCounter = 10000;
+				
+			}
+			catch (InterpreterException e)
+			{
+				playerScript.LoadString("print(...)").Function.Call(e.DecoratedMessage);
+			}
+			catch (IndexOutOfRangeException e)
+			{
+				playerScript.LoadString("print(...)").Function.Call(e.Message);
+			}
+
+			return;
+		}
+		ScriptFunction = Script.Globals.Get("run");
 		
 		foreach (var myRobot in MyRobots)
 		{
 			myRobot.ResetMove();
+		}
+
+		if (TurnCount % SpawnTurnCount == 1 && MyRobots.Count < 10)
+		{
+			MyBase.newRobot();
 		}
 
 		routine = playerScript.CreateCoroutine(ScriptFunction);
@@ -140,8 +186,13 @@ public class Player
 		catch (InterpreterException e)
 		{
 			playerScript.LoadString("print(...)").Function.Call(e.DecoratedMessage);
-			return false;
 		}
+		catch (IndexOutOfRangeException e)
+		{
+			playerScript.LoadString("print(...)").Function.Call(e.Message);
+		}
+
+		return false;
 	}
 
 	private void EndTurn()
@@ -249,14 +300,17 @@ public class PlayerProxy
 
 		return tab;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public int Turn
+	{
+		get { return Player.TurnCount; }
+	}
+
+
+
+
+
+
 }
 
 

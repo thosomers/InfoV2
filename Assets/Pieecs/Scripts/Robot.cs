@@ -60,7 +60,7 @@ public class Robot : PlayerObject {
 
 	}
 
-	public static Robot newRobot(Player player,RobotClass mClass)
+	public static Robot newRobot(Player player,RobotClass mClass,Tile tile)
 	{
 		GameObject RobotGO = GameObject.Instantiate(Board.Instance.RobotPrefab, Board.Instance.transform);
 
@@ -69,9 +69,10 @@ public class Robot : PlayerObject {
 
 		var p1 = player == Player.Player1;
 
-		robot.Setup(p1,mClass, p1 ? 0 : Board.Instance.SIZE-1, p1 ? 2 : Board.Instance.SIZE - 3);
+		robot.Setup(p1,mClass, tile.X, tile.Y);
 
 
+		player.MyRobots.Add(robot);
 		return robot;
 	}
 
@@ -133,21 +134,21 @@ public class Robot : PlayerObject {
 	{
 		stepsLeft = RClass.MoveRange;
 		attackLeft = true;
-		Debug.Log("RESET");
-		Debug.Log("Steps left: " + stepsLeft);
+		//Debug.Log("RESET");
+		//Debug.Log("Steps left: " + stepsLeft);
 	}
 	
 	public bool Move(int dx, int dy)
 	{
 		if (stepsLeft <= 0)
 		{
-			Debug.Log("No steps left.");
+			//Debug.Log("No steps left.");
 			return false;
 		}
 		
 		if (Mathf.Abs(dx) + Mathf.Abs(dy) > 1+0.1)
 		{
-			Debug.Log("Too far");
+			//Debug.Log("Too far");
 			return false;
 		}
 
@@ -159,7 +160,7 @@ public class Robot : PlayerObject {
 
 		if (tile == null || !tile.Walkable  || Board.getObject(nx, ny) != null)
 		{
-			Debug.Log("Too full :(");
+			//Debug.Log("Too full :(");
 			return false;
 		}
 
@@ -176,7 +177,7 @@ public class Robot : PlayerObject {
 
 		stepsLeft -= 1;
 		
-		Debug.Log("Steps left: " + stepsLeft);
+		//Debug.Log("Steps left: " + stepsLeft);
 		this.transform.position = new Vector3(X,0,Y);
 		return true;
 	}
@@ -270,6 +271,11 @@ public class RobotProxy : PlayerObjectProxy
 		var ret = Robot.Move((int) vec.X,(int) vec.Y);
 		
 		return ret ? Robot.stepsLeft : -1;
+	}
+
+	public bool Alive
+	{
+		get { return Robot != null; }
 	}
 
 

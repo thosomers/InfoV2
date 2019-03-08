@@ -7,8 +7,11 @@
 * Modifications & API by: Ronen Ness.
 * Since: 2016.
 */
+
+using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PathFind
 {
@@ -122,6 +125,83 @@ namespace PathFind
                 return 14 * dstY + 10 * (dstX - dstY);
             return 14 * dstX + 10 * (dstY - dstX);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public static List<Tile> withDistance(Tile begin, int range)
+        {
+            HashSet<Tile> ClosedSet = new HashSet<Tile>();
+    
+            Queue<Tile> OpenSet = new Queue<Tile>();
+            
+            OpenSet.Enqueue(begin);
+
+            for (int i = 0; i < range; i++)
+            {
+                Queue<Tile> newSet = new Queue<Tile>();
+
+                while (OpenSet.Count > 0)
+                {
+                    Tile next = OpenSet.Dequeue();
+                    ClosedSet.Add(next);
+
+                    for (int x = -1; x <= 1; x++)
+                    {
+                        for (int y = -1; y <= 1; y++)
+                        {
+                            if (Math.Abs(x) + Math.Abs(y) != 1) continue;
+                            
+                            var neighbor = Board.getTile(next.X + x, next.Y + y);
+
+                            if (neighbor == null ||  ClosedSet.Contains(neighbor) || OpenSet.Contains(neighbor) || newSet.Contains(neighbor))
+                            {
+                                continue;
+                            }
+
+                            if (neighbor.Walkable && neighbor.Object == null)
+                            {
+                                newSet.Enqueue(neighbor);
+                            }
+                        }
+                    }
+                }
+
+                OpenSet = newSet;
+
+            }
+
+            return OpenSet.ToList();
+        }
+        
+        
+        
+        
+        
+        
     }
 
 }
