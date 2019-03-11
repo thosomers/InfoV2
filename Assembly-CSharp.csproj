@@ -15,7 +15,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{FB8726B7-80C6-68DC-7BEE-B2A66C82951B}</ProjectGuid>
+    <ProjectGuid>{F7298935-1E5C-D64E-EC5C-05B152A0F1FC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -81,6 +81,12 @@
     <Compile Include="Assets\Pieecs\Scripts\Utils\LuaHandler.cs" />
     <Compile Include="Assets\Pieecs\Scripts\Utils\PlayerObjectProxy.cs" />
     <Compile Include="Assets\Pieecs\Scripts\Utils\VectorProxy.cs" />
+    <Compile Include="Assets\Scenes\EditorScripts\EditorPanel.cs" />
+    <Compile Include="Assets\Scenes\EditorScripts\FileSelector.cs" />
+    <Compile Include="Assets\Scenes\EditorScripts\SelectableFile.cs" />
+    <Compile Include="Assets\Scenes\SceneScript\EditorScene.cs" />
+    <Compile Include="Assets\Scenes\SceneScript\GameScene.cs" />
+    <Compile Include="Assets\Scenes\SceneScript\PlayScene.cs" />
     <Compile Include="Assets\Terrain\TerrainGen.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
@@ -100,16 +106,16 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>/home/informatica/InfoProjectSharp/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>/home/informatica/RiderProjects/InfoV2/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>/home/informatica/InfoProjectSharp/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>/home/informatica/RiderProjects/InfoV2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>/home/informatica/InfoProjectSharp/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>/home/informatica/RiderProjects/InfoV2/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>/home/informatica/InfoProjectSharp/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>/home/informatica/RiderProjects/InfoV2/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/home/informatica/Unity/Hub/Editor/2018.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -348,7 +354,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{70638134-FD11-97E8-DA8B-A37003EE94D0}</Project>
+      <Project>{873820DD-C6E1-ABBF-7C42-B1AB72686BEF}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
   </ItemGroup>

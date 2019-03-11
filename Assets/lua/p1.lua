@@ -1,9 +1,4 @@
 
-
-
-
-
-
 function distance(obj1,obj2)
     local path = Tiles.pathBetween(obj1.tile,obj2.tile)
     --print("dis:"..tostring(#path))
@@ -126,12 +121,6 @@ function clean()
     end
   end
 end
-
-
-
-
-
-
 
 
 

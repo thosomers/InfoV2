@@ -2,8 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using DefaultNamespace.Pieecs.Scripts;
 using MoonSharp.Interpreter;
+using Pieecs.Scripts;
 using Pieecs.Scripts.Utils;
 using TMPro;
 using UnityEngine;

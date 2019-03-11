@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace DefaultNamespace.Pieecs.Scripts
+namespace Pieecs.Scripts
 {
     public static class Game
     {
