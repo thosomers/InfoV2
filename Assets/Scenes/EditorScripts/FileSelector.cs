@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using DefaultNamespace.Scenes;
 using Pieecs.Scripts;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class FileSelector : MonoBehaviour
 {
@@ -13,7 +17,10 @@ public class FileSelector : MonoBehaviour
 
 	public GameObject ItemPrefab;
 
-	public EditorPanel Editor;
+	[FormerlySerializedAs("onSelect")]
+	[SerializeField]
+	private FileSelector.FileSelectedEvent OnSelect = new FileSelector.FileSelectedEvent();
+
 
 	// Use this for initialization
 	void Start ()
@@ -21,6 +28,12 @@ public class FileSelector : MonoBehaviour
 		Refresh();
 
 	}
+
+	void OnEnable()
+	{
+		Refresh();
+	}
+
 
 	public void Refresh()
 	{
@@ -52,7 +65,13 @@ public class FileSelector : MonoBehaviour
 	{
 		Current = selectableFile;
 
-		Editor.Open(Current.MyFile);
-
+		OnSelect.Invoke(new FileInfo(Current.MyFile));
 	}
+	
+	
+	[Serializable]
+	public class FileSelectedEvent : UnityEvent<FileInfo>
+	{
+	}
+	
 }

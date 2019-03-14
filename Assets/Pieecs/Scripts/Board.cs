@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MoonSharp.Interpreter;
 using PathFind;
+using Pieecs.Scripts;
 using Pieecs.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,7 +41,7 @@ public class Board : MonoBehaviour
 	
 	
 	// Use this for initialization
-	void Start ()
+	void Awake ()
 	{
 		Instance = this;
 		
@@ -119,6 +120,11 @@ public class Board : MonoBehaviour
 		{
 			boardTile.selectionBox.setEnabled(false);
 		}
+	}
+	
+	public void TerminateGame()
+	{
+		Game.Terminate();
 	}
 	
 }
@@ -207,7 +213,6 @@ public class BoardProxy
 	{
 		return PathFind.Pathfinding.withDistance(t1, range);
 	}
-	
 	
 	
 }

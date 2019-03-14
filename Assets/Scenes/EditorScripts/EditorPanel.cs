@@ -17,6 +17,11 @@ public class EditorPanel : MonoBehaviour
     public string currentFile;
 
 
+    public void Open(FileInfo file)
+    {
+        this.Open(file.FullName);
+    }
+
     public void Open(string currentMyFile)
     {
         currentFile = currentMyFile;
@@ -52,8 +57,16 @@ public class EditorPanel : MonoBehaviour
 
     public void New()
     {
+        var LuaDir = Path.Combine(Application.dataPath, "lua");
+        
+        if (!Directory.Exists(LuaDir))
+        {
+            Directory.CreateDirectory(LuaDir);
+        }
+        
+        
         var UnnamedName = "unnamed.lua";
-        var UnnamedPath = Path.Combine(new FileInfo(currentFile).DirectoryName, UnnamedName);
+        var UnnamedPath = Path.Combine(LuaDir,UnnamedName);
 
         currentFile = UnnamedPath;
         

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class GameScene : MonoBehaviour
@@ -7,7 +8,15 @@ public abstract class GameScene : MonoBehaviour
     public Canvas gameCanvas;
 	
     private Camera lastCam;
-	
+    
+    protected static HashSet<GameScene> Scenes = new HashSet<GameScene>();
+
+    public GameScene()
+    {
+        Scenes.Add(this);
+    }
+
+
     public void Show()
     {
         Scene.SetActive(true);
@@ -26,7 +35,10 @@ public abstract class GameScene : MonoBehaviour
 	
     public void Hide()
     {
-        lastCam.enabled = true;
+        if (lastCam)
+        {
+            lastCam.enabled = true;
+        }
         Scene.SetActive(false);
         gameCanvas.enabled = false;
     }

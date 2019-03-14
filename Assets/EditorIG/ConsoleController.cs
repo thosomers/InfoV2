@@ -18,7 +18,18 @@ public class ConsoleController : MonoBehaviour
 
 
 
-	void print(string str)
+	public void Clear()
+	{
+		for (int i = 0; i < ConsoleContent.childCount; i++)
+		{
+			GameObject.Destroy(ConsoleContent.GetChild(i).gameObject);
+		}
+		
+	}
+	
+	
+
+	public void print(string str)
 	{
 		var go = GameObject.Instantiate<GameObject>(ConsoleTextPrefab, ConsoleContent);
 
@@ -27,7 +38,7 @@ public class ConsoleController : MonoBehaviour
 		text.text = str;
 	}
 	
-	void print(object[] objs)
+	public void print(object[] objs)
 	{
 		foreach (var o in objs)
 		{
@@ -35,7 +46,7 @@ public class ConsoleController : MonoBehaviour
 		}
 	}
 
-	void print(DynValue val)
+	public void print(DynValue val)
 	{
 		if (val.Type == DataType.Tuple)
 		{

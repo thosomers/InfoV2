@@ -36,20 +36,46 @@ namespace DefaultNamespace
 		{
 		}
 
+
+		public static bool CanMove = false;
+		
+		public static void EnableMove(bool move)
+		{
+			Cursor.lockState = move
+				? CursorLockMode.Locked
+				: CursorLockMode.None;
+
+			Cursor.visible = (Cursor.lockState != CursorLockMode.Locked);
+			CanMove = move;
+		}
+
+
+
+		public void toggleMove()
+		{
+			Cursor.lockState = Cursor.lockState != CursorLockMode.Locked
+				? CursorLockMode.Locked
+				: CursorLockMode.None;
+
+			Cursor.visible = (Cursor.lockState != CursorLockMode.Locked);
+		}
+		
+
 		void Update()
 		{
-			if (Input.GetKeyDown(KeyCode.LeftControl))
+			RenderSettings.skybox.SetFloat("_Rotation", Time.time * 2);
+			
+			
+			if (CanMove)
 			{
-				Cursor.lockState = (Cursor.lockState == CursorLockMode.None)
-					? CursorLockMode.Locked
-					: CursorLockMode.None;
-
-				Cursor.visible = (Cursor.lockState != CursorLockMode.Locked);
-
-				Canvas.GetComponent<Canvas>().enabled = Cursor.visible;
-
+				if (Input.GetMouseButtonDown(1))
+				{
+					toggleMove();
+				}
 			}
-
+			
+			
+			
 			if (Cursor.visible) return;
 
 

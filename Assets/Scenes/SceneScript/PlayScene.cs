@@ -8,6 +8,8 @@ public class PlayScene : GameScene
 	public static PlayScene Instance;
 	
 	public Board gameBoard;
+	
+	public ConsoleController console;
 
 	
 	
