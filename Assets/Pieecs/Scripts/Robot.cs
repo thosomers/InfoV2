@@ -187,6 +187,11 @@ public class Robot : PlayerObject {
 		this.Player.MyRobots.Remove(this);
 		base.Destroy();
 	}
+
+	public void AddHealth()
+	{
+		Health = Math.Min(Health + 0.33f * RClass.AttackDamage, RClass.MaxHealth);
+	}
 }
 
 public class RobotClass
@@ -277,7 +282,11 @@ public class RobotProxy : PlayerObjectProxy
 	{
 		get { return Robot != null; }
 	}
-
+	
+	public float Health
+	{
+		get { return Robot.Health; }
+	}
 
 
 

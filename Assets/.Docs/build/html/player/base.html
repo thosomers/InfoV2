@@ -1,0 +1,153 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Base &#8212; Terranova  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Examples" href="../examples.html" />
+    <link rel="prev" title="Robot" href="robot.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="base">
+<h1>Base<a class="headerlink" href="#base" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="accessor">
+<h2>Accessor<a class="headerlink" href="#accessor" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>Base</strong> object can accessed only using <em>Player.Base()</em></p>
+<div class="highlight-lua notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">me</span> <span class="o">=</span> <span class="n">player</span><span class="p">.</span><span class="n">base</span><span class="p">()</span> <span class="o">#</span> <span class="n">The</span> <span class="n">Current</span> <span class="n">player</span> <span class="n">base</span>
+<span class="kd">local</span> <span class="n">them</span> <span class="o">=</span> <span class="n">enemy</span><span class="p">.</span><span class="n">base</span> <span class="o">#</span> <span class="n">The</span> <span class="n">Current</span> <span class="n">enemy</span> <span class="n">base</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="46%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">usage</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Robot.Pos : Vector</strong></td>
+<td>Returns a <strong>Vector</strong> containing the position of the <strong>Base</strong>.
+Vector(x,y)</td>
+</tr>
+<tr class="row-odd"><td><strong>Robot.Tile : Tile</strong></td>
+<td>Returns the <strong>Tile</strong>  object the <strong>Base</strong> is on.
+Equivalent to <em>Tiles.getTile(Base.Pos)</em></td>
+</tr>
+<tr class="row-even"><td><strong>Base.Health : Float</strong></td>
+<td>Returns the current <strong>Base</strong> health.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Terranova</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../board.html">Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../board/tile.html">Tile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/vector.html">Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/color.html">Color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../player.html">Player</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robot.html">Robot</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="robot.html" title="previous chapter">Robot</a></li>
+      <li>Next: <a href="../examples.html" title="next chapter">Examples</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Thomas Somers, Robin van Hoof, Jasper Sijben.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/player/base.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

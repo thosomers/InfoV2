@@ -163,6 +163,7 @@ public class Player
 		foreach (var myRobot in MyRobots)
 		{
 			myRobot.ResetMove();
+			myRobot.AddHealth();
 		}
 
 		if (TurnCount % SpawnTurnCount == 1 && MyRobots.Count < 10)

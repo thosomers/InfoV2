@@ -1,0 +1,182 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Robot &#8212; Terranova  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Base" href="base.html" />
+    <link rel="prev" title="Player" href="../player.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="robot">
+<h1>Robot<a class="headerlink" href="#robot" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="accessor">
+<h2>Accessor<a class="headerlink" href="#accessor" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>Robot</strong> object can only be obtained via <em>Player.Robots()</em></p>
+<div class="highlight-lua notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">robots</span> <span class="o">=</span> <span class="n">player</span><span class="p">.</span><span class="n">Robots</span><span class="p">()</span> <span class="o">#</span><span class="n">b</span> <span class="n">Get</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">my</span> <span class="n">Robots</span>
+
+<span class="kr">for</span> <span class="n">index</span><span class="p">,</span><span class="n">robot</span> <span class="kr">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">robots</span><span class="p">)</span> <span class="kr">do</span> <span class="o">#</span> <span class="n">Loops</span> <span class="kr">for</span> <span class="n">every</span> <span class="n">index</span> <span class="ow">and</span> <span class="n">respective</span> <span class="n">robot</span> <span class="kr">in</span> <span class="n">robots</span>
+  <span class="o">#</span> <span class="n">Do</span> <span class="n">Something</span>
+<span class="kr">end</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">usage</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Robot.Pos : Vector</strong></td>
+<td>Returns a <strong>Vector</strong> containing the position of the <strong>Robot</strong>.
+Vector(x,y)</td>
+</tr>
+<tr class="row-odd"><td><strong>Robot.Tile : Tile</strong></td>
+<td>Returns the <strong>Tile</strong>  object the <strong>Robot</strong> is on.
+Equivalent to <em>Tiles.getTile(Robot.Pos)</em></td>
+</tr>
+<tr class="row-even"><td><strong>Robot.Health : Float</strong></td>
+<td>Returns the current <strong>Robot</strong> health.</td>
+</tr>
+<tr class="row-odd"><td><strong>Robot.Steps : Int</strong></td>
+<td>Returns the number of steps this <strong>Robot</strong> can take in this turn.</td>
+</tr>
+<tr class="row-even"><td><strong>Robot.Range : Int</strong></td>
+<td>Returns the number of Tiles this <strong>Robot</strong> can attack this turn.</td>
+</tr>
+<tr class="row-odd"><td><strong>Robot.Player : Player</strong></td>
+<td>Returns the Player that owns this <strong>Robot</strong>.
+This means: <em>Robot.Player.Robots()</em> contains <strong>Robot</strong></td>
+</tr>
+<tr class="row-even"><td><strong>Robot.Alive : Boolean</strong></td>
+<td>Returns <strong>True</strong> is this robot is still alive.
+Returns <strong>False</strong> otherwise</td>
+</tr>
+<tr class="row-odd"><td><strong>Robot.Move(Vector delta)</strong></td>
+<td>Tries to move the <strong>Robot</strong> according to delta
+In essence: <em>Robot.Pos += delta</em>.
+Only possible if delta.length is 1, the tile is accessible (So has no object and is land), and Robot.steps &gt; 0</td>
+</tr>
+<tr class="row-even"><td><strong>Robot.Attack(Vector delta)</strong></td>
+<td>Tries to attack the Object on tile with position: <em>Robot.pos + delta</em>
+Possible only if robot.range &lt;= delta.length and the tile contains an enemy target.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Terranova</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../board.html">Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../board/tile.html">Tile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/vector.html">Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/color.html">Color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../player.html">Player</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="base.html">Base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../player.html" title="previous chapter">Player</a></li>
+      <li>Next: <a href="base.html" title="next chapter">Base</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Thomas Somers, Robin van Hoof, Jasper Sijben.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/player/robot.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

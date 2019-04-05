@@ -134,5 +134,11 @@ public class BaseProxy : PlayerObjectProxy
 
 	public int Range = 0;
 
+	public float Health
+	{
+		get { return Base.Health; }
+	}
+
+
 }
 
